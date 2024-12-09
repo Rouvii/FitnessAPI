@@ -7,6 +7,7 @@ import dat.entities.Session;
 import dat.entities.Set;
 import dat.security.entities.Role;
 import dat.security.entities.User;
+import dat.util.Utils;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
