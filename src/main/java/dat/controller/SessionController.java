@@ -83,7 +83,7 @@ public class SessionController implements IController {
         try {
             int id = Integer.parseInt(ctx.pathParam("id"));
             SessionDTO sessionDto = ctx.bodyAsClass(SessionDTO.class);
-            sessionDAO.update(sessionDto, sessionDto);
+            sessionDAO.update(id, sessionDto);
             ctx.status(200);
             ctx.json(new Message(200, "Session updated"));
         } catch (Exception e) {
