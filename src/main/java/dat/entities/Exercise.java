@@ -9,35 +9,35 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * Purpose:
+ * Represents an Exercise in a workout session.
  *
  * @author: Kevin Løvstad Schou
  */
-
-
-
-
-
 @Entity
 @NoArgsConstructor
-@Setter
 @Getter
+@Setter
 public class Exercise {
+
     @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private int id;
-    private String name;
-    @Enumerated(jakarta.persistence.EnumType.STRING)
-    private MuscleGroup muscleGroup;
-    private String description;
-    @OneToMany
-    private List<Set> sets;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "session_id")
-    private Session session;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;  // Primary key for Exercise.
 
+    private String name;  // Name of the exercise.
 
+    @Enumerated(EnumType.STRING)
+    private MuscleGroup muscleGroup;  // The muscle group targeted by the exercise.
 
+    private String description;  // Description of the exercise.
+
+    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Set> sets;  // List of sets for this exercise.
+
+    @ManyToOne(fetch = FetchType.LAZY)  // The session this exercise belongs to.
+    @JoinColumn(name = "session_id", nullable = false)
+    private Session session;  // The session for the exercise.
+
+    // Constructor to initialize Exercise entity with all fields.
     public Exercise(String name, MuscleGroup muscleGroup, String description, List<Set> sets, Session session) {
         this.name = name;
         this.muscleGroup = muscleGroup;
@@ -46,13 +46,20 @@ public class Exercise {
         this.session = session;
     }
 
+    // Constructor to convert from ExerciseDTO to Exercise entity.
     public Exercise(ExerciseDTO exerciseDTO) {
         this.name = exerciseDTO.getName();
         this.muscleGroup = exerciseDTO.getMuscleGroup();
         this.description = exerciseDTO.getDescription();
-       // this.sets = exerciseDTO.getSets();
-       // this.session = exerciseDTO.getSession();
+
+        // Convert SetDTO to Set entity.
+        this.sets = exerciseDTO.getSets().stream()
+                .map(setDTO -> new Set(setDTO.getReps(), setDTO.getWeight(), this)) // Assuming each SetDTO has reps and weight.
+                .toList();
+
+        // Convert SessionDTO to Session entity.
+        if (exerciseDTO.getSession() != null) {
+            this.session = new Session(exerciseDTO.getSession());
+        }
     }
-
-
 }

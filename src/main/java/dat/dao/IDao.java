@@ -1,5 +1,7 @@
 package dat.dao;
 
+import dat.dto.ExerciseDTO;
+
 import java.util.List;
 
 public interface IDao<T> {
@@ -7,5 +9,8 @@ public interface IDao<T> {
     public T getById(int id);
     public T create(T t);
     public void update(T t, T update);
+
+    void update(int id, T t);
+
     public void delete(int id);
 }
