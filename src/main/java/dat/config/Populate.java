@@ -22,14 +22,14 @@ public class Populate {
             User user = sessions.get(0).getUser();
             em.persist(user);
 
-            // Persist sessions
+            // Persist sessions with exercises and sets
             for (Session session : sessions) {
                 em.persist(session);
-                // Persist exercises and sets after setting the session
                 for (Exercise exercise : session.getExercise()) {
                     exercise.setSession(session);
                     em.persist(exercise);
                     for (Set set : exercise.getSets()) {
+                        set.setExercise(exercise); // Ensure bi-directional relationship
                         em.persist(set);
                     }
                 }
@@ -44,6 +44,7 @@ public class Populate {
         user.setUsername("user1");
         user.setPassword("password");
 
+        // Exercise 1
         Exercise exercise1 = new Exercise();
         exercise1.setName("Push Up");
         exercise1.setDescription("Push up exercise");
@@ -52,13 +53,35 @@ public class Populate {
         Set set1 = new Set();
         set1.setReps(10);
         set1.setWeight(0);
+
+        Set set2 = new Set();
+        set2.setReps(12);
+        set2.setWeight(0);
+
+        exercise1.setSets(List.of(set1, set2));
         set1.setExercise(exercise1);
+        set2.setExercise(exercise1);
 
-        exercise1.setSets(List.of(set1));
+        // Exercise 2
+        Exercise exercise2 = new Exercise();
+        exercise2.setName("Pull Up");
+        exercise2.setDescription("Pull up exercise");
+        exercise2.setMuscleGroup(MuscleGroup.BACK);
 
+        Set set3 = new Set();
+        set3.setReps(8);
+        set3.setWeight(0);
+
+        exercise2.setSets(List.of(set3));
+        set3.setExercise(exercise2);
+
+        // Session 1
         Session session1 = new Session();
         session1.setUser(user);
-        session1.setExercise(List.of(exercise1));
+        session1.setExercise(List.of(exercise1, exercise2));
+
+        exercise1.setSession(session1);
+        exercise2.setSession(session1);
 
         return List.of(session1);
     }

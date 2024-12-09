@@ -6,7 +6,7 @@ import dat.entities.Exercise;
 import dat.exception.ApiException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.PersistenceException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,8 +30,10 @@ public class SessionDAO implements IDao<SessionDTO> {
     @Override
     public List<SessionDTO> getAll() {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<SessionDTO> query = em.createQuery("SELECT new dat.dto.SessionDTO(s) FROM Session s", SessionDTO.class);
-            return query.getResultList();
+            List<Session> sessions = em.createQuery("SELECT s FROM Session s", Session.class).getResultList();
+            return sessions.stream().map(SessionDTO::new).toList();
+        } catch (PersistenceException e) {
+            throw new IllegalStateException("Error fetching sessions: " + e.getMessage(), e);
         }
     }
 
@@ -68,8 +70,8 @@ public class SessionDAO implements IDao<SessionDTO> {
                 throw new ApiException(404, "Session not found");
             }
 
-            List<Exercise> exercises = updatedSession.getExercise().stream()
-                    .map(dto -> new Exercise(dto))
+            List<Exercise> exercises = updatedSession.getExercises().stream()
+                    .map(dto -> new Exercise(dto, existingSession))
                     .collect(Collectors.toList());
             existingSession.setExercise(exercises);
 
@@ -77,7 +79,6 @@ public class SessionDAO implements IDao<SessionDTO> {
             em.getTransaction().commit();
         }
     }
-
 
     @Override
     public void delete(int id) {

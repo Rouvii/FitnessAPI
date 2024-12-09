@@ -1,7 +1,6 @@
 package dat.dto;
 
 import dat.entities.Session;
-import dat.security.entities.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,35 +8,24 @@ import lombok.Setter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Purpose:
- *
- * @author: Kevin Løvstad Schou
- */
-
-
-
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 public class SessionDTO {
+
     private int id;
-    private User user;
-    private List<ExerciseDTO> exercise;
+    private UserDTO user;
+    private List<ExerciseDTO> exercises;
 
-
-
-    public SessionDTO(int id, User user) {
-        this.id = id;
-        this.user = user;
-    }
-
-    public SessionDTO(Session session){
+    public SessionDTO(Session session) {
         this.id = session.getId();
-        this.user = session.getUser();
-        this.exercise = session.getExercise().stream()
-                .map(ExerciseDTO::new)
+        this.user = new UserDTO(session.getUser());
+        this.exercises = session.getExercise().stream()
+                .map(exercise -> {
+                    ExerciseDTO exerciseDTO = new ExerciseDTO(exercise);
+                    exerciseDTO.setSessionId(this.id); // Set sessionId in ExerciseDTO
+                    return exerciseDTO;
+                })
                 .collect(Collectors.toList());
     }
-
 }

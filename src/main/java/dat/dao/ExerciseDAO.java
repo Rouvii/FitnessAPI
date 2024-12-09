@@ -9,17 +9,17 @@ import jakarta.persistence.PersistenceException;
 
 import java.util.List;
 
-public class ExcersieDAO implements IDao<ExerciseDTO> {
-    private static ExcersieDAO instance;
+public class ExerciseDAO implements IDao<ExerciseDTO> {
+    private static ExerciseDAO instance;
     private static EntityManagerFactory emf;
 
-    private ExcersieDAO(EntityManagerFactory emf) {
-        ExcersieDAO.emf = emf;
+    private ExerciseDAO(EntityManagerFactory emf) {
+        ExerciseDAO.emf = emf;
     }
 
-    public static ExcersieDAO getInstance(EntityManagerFactory _emf) {
+    public static ExerciseDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
-            instance = new ExcersieDAO(_emf);
+            instance = new ExerciseDAO(_emf);
         }
         return instance;
     }
@@ -52,28 +52,20 @@ public class ExcersieDAO implements IDao<ExerciseDTO> {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            // Validate the Session before proceeding with creation
-            Session session = em.find(Session.class, exerciseDTO.getSession().getId());
+            Session session = em.find(Session.class, exerciseDTO.getSessionId());
             if (session == null) {
-                throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSession().getId() + " not found");
+                throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSessionId() + " not found");
             }
 
-            Exercise exercise = new Exercise();
-            exercise.setName(exerciseDTO.getName());
-            exercise.setSession(session);
-            exercise.setDescription(exerciseDTO.getDescription());
-            exercise.setMuscleGroup(exerciseDTO.getMuscleGroup());
-
+            Exercise exercise = new Exercise(exerciseDTO, session);
             em.persist(exercise);
             em.getTransaction().commit();
 
-            return new ExerciseDTO(exercise); // Return DTO for newly created exercise
+            return new ExerciseDTO(exercise);
         } catch (Exception e) {
             throw new IllegalStateException("Error creating exercise: " + e.getMessage(), e);
         }
     }
-
-
 
     @Override
     public void update(int id, ExerciseDTO update) {
@@ -82,52 +74,44 @@ public class ExcersieDAO implements IDao<ExerciseDTO> {
             em = emf.createEntityManager();
             em.getTransaction().begin();
 
-            // Find the exercise by its ID
-            Exercise exercise = em.find(Exercise.class, id); // Use 'id' to find the exercise
+            Exercise exercise = em.find(Exercise.class, id);
             if (exercise == null) {
                 throw new IllegalArgumentException("Exercise with ID " + id + " not found");
             }
 
-            // Validate the Session before updating
-            Session session = em.find(Session.class, update.getSession().getId());
+            Session session = em.find(Session.class, update.getSessionId());
             if (session == null) {
-                throw new IllegalArgumentException("Session with ID " + update.getSession().getId() + " not found");
+                throw new IllegalArgumentException("Session with ID " + update.getSessionId() + " not found");
             }
 
-            // Apply updates to the exercise
             exercise.setName(update.getName());
             exercise.setSession(session);
             exercise.setDescription(update.getDescription());
             exercise.setMuscleGroup(update.getMuscleGroup());
 
-            em.getTransaction().commit(); // Commit the transaction if all goes well
+            em.getTransaction().commit();
         } catch (Exception e) {
-            // Ensure rollback in case of an error
             if (em != null && em.getTransaction().isActive()) {
-                em.getTransaction().rollback(); // Rollback the transaction in case of failure
+                em.getTransaction().rollback();
             }
             throw new IllegalStateException("Error updating exercise: " + e.getMessage(), e);
         } finally {
-            // Close the EntityManager if it's open
             if (em != null && em.isOpen()) {
                 em.close();
             }
         }
     }
 
-
     @Override
     public void delete(int id) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            // Find the exercise by ID and validate its existence
             Exercise exercise = em.find(Exercise.class, id);
             if (exercise == null) {
                 throw new IllegalArgumentException("Exercise with ID " + id + " not found");
             }
 
-            // Remove the exercise from the database
             em.remove(exercise);
             em.getTransaction().commit();
         } catch (Exception e) {
