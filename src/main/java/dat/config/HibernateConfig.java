@@ -1,6 +1,10 @@
 package dat.config;
 
 
+import dat.entities.Exercise;
+import dat.entities.MuscleGroup;
+import dat.entities.Session;
+import dat.entities.Set;
 import dat.security.entities.Role;
 import dat.security.entities.User;
 import jakarta.persistence.EntityManagerFactory;
@@ -44,6 +48,10 @@ public class HibernateConfig {
        // configuration.addAnnotatedClass(YourEntityClass.class);
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Role.class);
+        configuration.addAnnotatedClass(Exercise.class);
+        configuration.addAnnotatedClass(Set.class);
+        configuration.addAnnotatedClass(MuscleGroup.class);
+        configuration.addAnnotatedClass(Session.class);
     }
 
     private static EntityManagerFactory createEMF(boolean forTest) {

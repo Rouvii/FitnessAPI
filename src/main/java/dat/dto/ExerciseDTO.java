@@ -1,7 +1,7 @@
 package dat.dto;
 
 import dat.entities.Exercise;
-import dat.entities.MuscleNigger;
+import dat.entities.MuscleGroup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,14 +20,14 @@ import java.util.List;
 public class ExerciseDTO {
     private int id;
     private String name;
-    private MuscleNigger muscleGroup;
+    private MuscleGroup muscleGroup;
     private String description;
     private List<SetDTO> sets = new ArrayList<>();
     private SessionDTO session;
 
 
 
-    public ExerciseDTO(int id, String name, MuscleNigger muscleGroup, String description, List<SetDTO> sets, SessionDTO session) {
+    public ExerciseDTO(int id, String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, SessionDTO session) {
         this.id = id;
         this.name = name;
         this.muscleGroup = muscleGroup;

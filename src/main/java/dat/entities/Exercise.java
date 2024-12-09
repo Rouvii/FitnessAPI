@@ -28,7 +28,7 @@ public class Exercise {
     private int id;
     private String name;
     @Enumerated(jakarta.persistence.EnumType.STRING)
-    private MuscleNigger muscleGroup;
+    private MuscleGroup muscleGroup;
     private String description;
     @OneToMany
     private List<Set> sets;
@@ -38,7 +38,7 @@ public class Exercise {
 
 
 
-    public Exercise(String name,MuscleNigger muscleGroup, String description, List<Set> sets, Session session) {
+    public Exercise(String name, MuscleGroup muscleGroup, String description, List<Set> sets, Session session) {
         this.name = name;
         this.muscleGroup = muscleGroup;
         this.description = description;
