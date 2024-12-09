@@ -1,40 +1,30 @@
 package dat.dto;
 
-import dat.entities.Exercise;
+import dat.entities.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import dat.entities.Set;
-
-/**
- * Purpose:
- *
- * @author: Kevin Løvstad Schou han er til mænd
- */
-
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class SetDTO {
     private int id;
     private int reps;
     private int weight;
-    private Exercise exercise;
+    private int exerciseId;
 
-    public SetDTO(int id, int reps, int weight) {
+    public SetDTO(int id, int reps, int weight, int exerciseId) {
         this.id = id;
         this.reps = reps;
         this.weight = weight;
+        this.exerciseId = exerciseId;
     }
-
 
     public SetDTO(Set set) {
         this.id = set.getId();
         this.reps = set.getReps();
         this.weight = set.getWeight();
-        this.exercise = set.getExercise();
-
+        this.exerciseId = set.getExercise().getId();
     }
 }

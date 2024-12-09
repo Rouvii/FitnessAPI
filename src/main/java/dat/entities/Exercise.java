@@ -5,14 +5,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.List;
+import java.util.Objects;
 
-/**
- * Represents an Exercise in a workout session.
- *
- * @author: Kevin Løvstad Schou
- */
 @Entity
 @NoArgsConstructor
 @Getter
@@ -21,23 +18,23 @@ public class Exercise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;  // Primary key for Exercise.
+    private int id;
 
-    private String name;  // Name of the exercise.
+    private String name;
 
     @Enumerated(EnumType.STRING)
-    private MuscleGroup muscleGroup;  // The muscle group targeted by the exercise.
+    private MuscleGroup muscleGroup;
 
-    private String description;  // Description of the exercise.
+    private String description;
 
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Set> sets;  // List of sets for this exercise.
+    @BatchSize(size = 10)
+    private List<Set> sets;
 
-    @ManyToOne(fetch = FetchType.LAZY)  // The session this exercise belongs to.
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "session_id", nullable = false)
-    private Session session;  // The session for the exercise.
+    private Session session;
 
-    // Constructor to initialize Exercise entity with all fields.
     public Exercise(String name, MuscleGroup muscleGroup, String description, List<Set> sets, Session session) {
         this.name = name;
         this.muscleGroup = muscleGroup;
@@ -46,20 +43,31 @@ public class Exercise {
         this.session = session;
     }
 
-    // Constructor to convert from ExerciseDTO to Exercise entity.
-    public Exercise(ExerciseDTO exerciseDTO) {
+    public Exercise(ExerciseDTO exerciseDTO, Session session) {
         this.name = exerciseDTO.getName();
         this.muscleGroup = exerciseDTO.getMuscleGroup();
         this.description = exerciseDTO.getDescription();
-
-        // Convert SetDTO to Set entity.
+        this.session = session;
         this.sets = exerciseDTO.getSets().stream()
-                .map(setDTO -> new Set(setDTO.getReps(), setDTO.getWeight(), this)) // Assuming each SetDTO has reps and weight.
+                .map(setDTO -> new Set(setDTO.getReps(), setDTO.getWeight(), this))
                 .toList();
+    }
 
-        // Convert SessionDTO to Session entity.
-        if (exerciseDTO.getSession() != null) {
-            this.session = new Session(exerciseDTO.getSession());
-        }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Exercise exercise = (Exercise) o;
+        return id == exercise.id &&
+                Objects.equals(name, exercise.name) &&
+                muscleGroup == exercise.muscleGroup &&
+                Objects.equals(description, exercise.description) &&
+                Objects.equals(sets, exercise.sets) &&
+                Objects.equals(session, exercise.session);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, muscleGroup, description, sets, session);
     }
 }

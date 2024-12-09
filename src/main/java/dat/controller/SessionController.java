@@ -32,6 +32,9 @@ public class SessionController implements IController {
 
             ctx.status(200);
             ctx.json(session, SessionDTO.class);
+        } catch (NumberFormatException e) {
+            log.error("Invalid ID format: {}", e.getMessage());
+            throw new ApiException(400, "Invalid ID format");
         } catch (Exception e) {
             ctx.json(new Message(400, "Invalid request"));
             log.error("400 {}", e.getMessage());

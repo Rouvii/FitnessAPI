@@ -38,6 +38,11 @@ public class User implements Serializable, ISecurityUser {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Role> roles = new HashSet<>();
 
+    public User(String username) {
+        this.username = username;
+    }
+
+
     public Set<String> getRolesAsStrings() {
         if (roles.isEmpty()) {
             return null;

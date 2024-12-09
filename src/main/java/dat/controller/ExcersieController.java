@@ -1,6 +1,6 @@
 package dat.controller;
 
-import dat.dao.ExcersieDAO;
+import dat.dao.ExerciseDAO;
 import dat.dto.ExerciseDTO;
 import dat.exception.ApiException;
 import dat.exception.Message;
@@ -9,10 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ExcersieController implements IController {
-    private final ExcersieDAO excersieDAO;
+    private final ExerciseDAO excersieDAO;
     private final Logger log = LoggerFactory.getLogger(ExcersieController.class);
 
-    public ExcersieController(ExcersieDAO excersieDAO) {
+    public ExcersieController(ExerciseDAO excersieDAO) {
         this.excersieDAO = excersieDAO;
     }
 
