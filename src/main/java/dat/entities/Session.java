@@ -38,14 +38,13 @@ private List<Exercise> exercise;
         this.exercise = exercise;
     }
 
-    public Session(SessionDTO sessionDTO){
+    public Session(SessionDTO sessionDTO) {
         this.id = sessionDTO.getId();
         this.user = sessionDTO.getUser();
         this.exercise = sessionDTO.getExercise().stream()
                 .map(Exercise::new)
                 .collect(Collectors.toList());
     }
-
 
 //Bed copilot konfigurer til at virke med den nye entity klasse
 /*

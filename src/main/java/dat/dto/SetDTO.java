@@ -10,7 +10,7 @@ import dat.entities.Set;
 /**
  * Purpose:
  *
- * @author: Kevin Løvstad Schou
+ * @author: Kevin Løvstad Schou han er til mænd
  */
 
 @Getter
