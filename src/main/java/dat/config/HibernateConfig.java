@@ -45,13 +45,15 @@ public class HibernateConfig {
 
     // TODO: IMPORTANT: Add Entity classes here for them to be registered with Hibernate
     private static void getAnnotationConfiguration(Configuration configuration) {
-       // configuration.addAnnotatedClass(YourEntityClass.class);
+
         configuration.addAnnotatedClass(User.class);
         configuration.addAnnotatedClass(Role.class);
+        configuration.addAnnotatedClass(Session.class);
         configuration.addAnnotatedClass(Exercise.class);
         configuration.addAnnotatedClass(Set.class);
         configuration.addAnnotatedClass(MuscleGroup.class);
-        configuration.addAnnotatedClass(Session.class);
+
+
     }
 
     private static EntityManagerFactory createEMF(boolean forTest) {
@@ -63,10 +65,6 @@ public class HibernateConfig {
             if (forTest) {
                 props = setTestProperties(props);
             } else if (System.getenv("DEPLOYED") != null) {
-                System.out.println("======================================");
-                System.out.println("Deployed");
-                System.out.println(System.getenv("DB_USERNAME"));
-                System.out.println("======================================");
                 setDeployedProperties(props);
             } else {
                 props = setDevProperties(props);
@@ -99,7 +97,7 @@ public class HibernateConfig {
     }
 
     private static Properties setDeployedProperties(Properties props) {
-        String DBName = "DBName";
+        String DBName = System.getenv("DB_NAME");
         props.setProperty("hibernate.connection.url", System.getenv("CONNECTION_STR") + DBName);
         props.setProperty("hibernate.connection.username", System.getenv("DB_USERNAME"));
         props.setProperty("hibernate.connection.password", System.getenv("DB_PASSWORD"));
@@ -107,7 +105,7 @@ public class HibernateConfig {
     }
 
     private static Properties setDevProperties(Properties props) {
-        String DBName = "DBName";
+        String DBName = Utils.getPropertyValue("DB_NAME", "config.properties");
         props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/" + DBName);
         props.put("hibernate.connection.username", "postgres");
         props.put("hibernate.connection.password", "postgres");
