@@ -16,7 +16,7 @@ public class SessionDAO implements IDao<SessionDTO> {
     private static SessionDAO instance;
     private static EntityManagerFactory emf;
 
-    private SessionDAO(EntityManagerFactory emf) {
+    public SessionDAO(EntityManagerFactory emf) {
         SessionDAO.emf = emf;
     }
 

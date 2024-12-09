@@ -1,0 +1,57 @@
+GET {{URL}}/sessions
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+###
+GET {{URL}}/api/sessions/1
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+###
+POST {{URL}}/api/sessions
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+  "user": {
+    "id": 1,
+    "username": "user1",
+    "password": "password"
+  },
+  "exercise": [
+    {
+      "name": "Push Up",
+      "description": "Push up exercise",
+      "muscleGroup": "CHEST",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+###
+PUT {{URL}}/api/sessions/1
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+  "user": {
+    "id": 1,
+    "username": "user1",
+    "password": "password"
+  },
+  "exercise": [
+    {
+      "name": "Push Up",
+      "description": "Push up exercise",
+      "muscleGroup": "CHEST",
+      "sets": [
+        {
+          "reps": 15,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
