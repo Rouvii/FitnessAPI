@@ -59,17 +59,17 @@ public class SessionDAO implements IDao<SessionDTO> {
     }
 
     @Override
-    public void update(SessionDTO session, SessionDTO updatedSession) {
+    public void update(int id, SessionDTO updatedSession) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            Session existingSession = em.find(Session.class, session.getId());
+            Session existingSession = em.find(Session.class, id);
             if (existingSession == null) {
                 throw new ApiException(404, "Session not found");
             }
 
             List<Exercise> exercises = updatedSession.getExercise().stream()
-                    .map(dto -> new Exercise(dto)) // Assuming Exercise has a constructor that accepts ExerciseDTO
+                    .map(dto -> new Exercise(dto))
                     .collect(Collectors.toList());
             existingSession.setExercise(exercises);
 
@@ -77,6 +77,7 @@ public class SessionDAO implements IDao<SessionDTO> {
             em.getTransaction().commit();
         }
     }
+
 
     @Override
     public void delete(int id) {
