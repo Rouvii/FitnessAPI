@@ -41,6 +41,10 @@ public class ExerciseDTO {
         this.name = exercise.getName();
         this.muscleGroup = exercise.getMuscleGroup();
         this.description = exercise.getDescription();
+        this.sets = exercise.getSets().stream()
+                .map(SetDTO::new)
+                .collect(java.util.stream.Collectors.toList());
+        this.session = new SessionDTO(exercise.getSession());
     }
 
 }
