@@ -1,5 +1,6 @@
 package dat.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dat.dto.SessionDTO;
 import dat.security.entities.User;
 import jakarta.persistence.*;
@@ -26,6 +27,7 @@ public class Session {
     private User user;
 
     @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Exercise> exercise;
 
     public Session(SessionDTO sessionDTO) {

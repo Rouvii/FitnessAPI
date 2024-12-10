@@ -16,8 +16,10 @@ public class SessionRoutes {
     public EndpointGroup getRoutes() {
         return () -> {
             get("/", sessionController::getAll);
+            get("/{id}", sessionController::getById);
             post("/", sessionController::create);
             put("/{id}", sessionController::update);
+            delete("/{id}", sessionController::delete);
         };
     }
 }
