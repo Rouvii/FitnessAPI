@@ -2,25 +2,23 @@ GET {{URL}}/sessions
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 ###
-GET {{URL}}/api/sessions/1
+GET {{URL}}/sessions/1
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 ###
-POST {{URL}}/api/sessions
+POST {{URL}}/sessions
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
   "user": {
-    "id": 1,
-    "username": "user1",
-    "password": "password"
+    "id": 1
   },
-  "exercise": [
+  "exercises": [
     {
-      "name": "Push Up",
-      "description": "Push up exercise",
-      "muscleGroup": "CHEST",
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
       "sets": [
         {
           "reps": 10,
@@ -43,9 +41,9 @@ Authorization: Bearer {{jwt_token}}
   },
   "exercise": [
     {
-      "name": "Push Up",
-      "description": "Push up exercise",
-      "muscleGroup": "CHEST",
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
       "sets": [
         {
           "reps": 15,
@@ -55,3 +53,41 @@ Authorization: Bearer {{jwt_token}}
     }
   ]
 }
+###
+DELETE {{URL}}/sessions/1
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+###
+GET {{URL}}/exercises
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+###
+GET {{URL}}/exercises/3
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+###
+POST {{URL}}/exercises
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+  "name": "Test Exercise",
+  "description": "TEST",
+  "muscleGroup": "ABS"
+}
+###
+PUT {{URL}}/exercises/3
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+  "name": "Test Exercise",
+  "description": "TESTUPDATED",
+  "muscleGroup": "ABS"
+}
+###
+DELETE {{URL}}/exercises/2
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+###

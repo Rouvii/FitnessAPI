@@ -7,12 +7,12 @@ public class Routes {
 
 
 private final SessionRoutes sessionRoutes = new SessionRoutes();
-
+private final ExerciseRoutes exerciseRoutes = new ExerciseRoutes();
   public EndpointGroup getRoutes() {
     return () -> {
 
         path("/sessions", sessionRoutes.getRoutes());
-
+        path("/exercises", exerciseRoutes.getRoutes());
     };
   }
 

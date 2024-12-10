@@ -2,8 +2,11 @@ package dat.controller;
 
 import dat.dao.SessionDAO;
 import dat.dto.SessionDTO;
+import dat.dto.UserDTO;
+import dat.entities.Session;
 import dat.exception.ApiException;
 import dat.exception.Message;
+import dat.security.entities.User;
 import io.javalin.http.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,23 +45,23 @@ public class SessionController implements IController {
         }
     }
 
-    @Override
     public void create(Context ctx) {
-        try {
-            SessionDTO sessionDto = ctx.bodyAsClass(SessionDTO.class);
-            if (sessionDto == null) {
-                ctx.status(404);
-                ctx.json(new Message(404, "No session data found"));
-                return;
-            }
+        SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
+        UserDTO userDTO = sessionDTO.getUser();
 
-            SessionDTO newSession = sessionDAO.create(sessionDto);
-            ctx.status(201);
-            ctx.json(newSession, SessionDTO.class);
-        } catch (Exception e) {
-            log.error("400 {}", e.getMessage());
-            throw new ApiException(400, e.getMessage());
+        // Convert UserDTO to User
+        User user = new User(userDTO.getId(), userDTO.getUsername(), userDTO.getPassword());
+
+        // Ensure the user is persisted
+        if (user.getId() == 0) {
+            // Save the user entity if it is not already persisted
+            sessionDAO.saveUser(user);
         }
+
+        Session session = new Session(sessionDTO);
+        session.setUser(user); // Set the user in the session
+        sessionDAO.save(session);
+        ctx.status(201).json(session);
     }
 
     @Override

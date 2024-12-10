@@ -13,7 +13,7 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
     private static ExerciseDAO instance;
     private static EntityManagerFactory emf;
 
-    private ExerciseDAO(EntityManagerFactory emf) {
+    public ExerciseDAO(EntityManagerFactory emf) {
         ExerciseDAO.emf = emf;
     }
 
@@ -39,7 +39,7 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
         try (EntityManager em = emf.createEntityManager()) {
             Exercise exercise = em.find(Exercise.class, id);
             if (exercise == null) {
-                return null; // Or throw exception if necessary
+                throw new IllegalArgumentException("Exercise with ID " + id + " not found");
             }
             return new ExerciseDTO(exercise);
         } catch (PersistenceException e) {
@@ -52,9 +52,12 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            Session session = em.find(Session.class, exerciseDTO.getSessionId());
-            if (session == null) {
-                throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSessionId() + " not found");
+            Session session = null;
+            if (exerciseDTO.getSessionId() != null) {
+                session = em.find(Session.class, exerciseDTO.getSessionId());
+                if (session == null) {
+                    throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSessionId() + " not found");
+                }
             }
 
             Exercise exercise = new Exercise(exerciseDTO, session);
@@ -79,9 +82,12 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
                 throw new IllegalArgumentException("Exercise with ID " + id + " not found");
             }
 
-            Session session = em.find(Session.class, update.getSessionId());
-            if (session == null) {
-                throw new IllegalArgumentException("Session with ID " + update.getSessionId() + " not found");
+            Session session = null;
+            if (update.getSessionId() != null) {
+                session = em.find(Session.class, update.getSessionId());
+                if (session == null) {
+                    throw new IllegalArgumentException("Session with ID " + update.getSessionId() + " not found");
+                }
             }
 
             exercise.setName(update.getName());

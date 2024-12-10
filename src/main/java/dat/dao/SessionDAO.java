@@ -4,6 +4,7 @@ import dat.dto.SessionDTO;
 import dat.entities.Session;
 import dat.entities.Exercise;
 import dat.exception.ApiException;
+import dat.security.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceException;
@@ -96,6 +97,29 @@ public class SessionDAO implements IDao<SessionDTO> {
 
             em.remove(session);
             em.getTransaction().commit();
+        }
+    }
+
+
+    public void save(Session session) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(session);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void saveUser(User user) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
     }
 }

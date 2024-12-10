@@ -15,14 +15,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserDTO {
-
+    private int id;
     private String username;
+    private String password;
 
     public UserDTO(int id, String username) {
+        this.id = id;
         this.username = username;
     }
 
     public UserDTO(User user) {
+        this.id = user.getId();
         this.username = user.getUsername();
     }
 }
