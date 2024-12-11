@@ -32,7 +32,7 @@ public class Session {
 
     public Session(SessionDTO sessionDTO) {
         this.id = sessionDTO.getId();
-        this.user = new User(sessionDTO.getUser().getUsername());
+        this.user = new User(sessionDTO.getUser().getUsername(), sessionDTO.getUser().getPassword());
         this.exercise = sessionDTO.getExercises().stream()
                 .map(exerciseDTO -> new Exercise(exerciseDTO, this))
                 .collect(Collectors.toList());

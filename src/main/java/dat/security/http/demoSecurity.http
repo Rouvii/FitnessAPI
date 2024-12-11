@@ -1,5 +1,5 @@
 ### A simple get request to the test endpoint. No need for login
-GET {{url}}/auth/test/
+GET {{URL}}/auth/test/
 
 ### Create a new user - this one will only get a USER role by default
 POST {{url}}/auth/register/

@@ -50,10 +50,10 @@ public class SessionController implements IController {
         UserDTO userDTO = sessionDTO.getUser();
 
         // Convert UserDTO to User
-        User user = new User(userDTO.getId(), userDTO.getUsername(), userDTO.getPassword());
+        User user = new User(userDTO.getUsername(), userDTO.getPassword());
 
         // Ensure the user is persisted
-        if (user.getId() == 0) {
+        if (user.getUsername().equals("") || user.getPassword().equals("")) {
             // Save the user entity if it is not already persisted
             sessionDAO.saveUser(user);
         }
