@@ -1,3 +1,4 @@
+
 GET {{URL}}/sessions
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
@@ -90,4 +91,28 @@ Authorization: Bearer {{jwt_token}}
 DELETE {{URL}}/exercises/2
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
+###
+
+
+POST {{URL}}/auth/login
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+
+"username": "user1",
+"password": "password"
+
+}
+
+> {% client.global.set("jwt_token", response.body.token); %}
+###
+POST {{URL}}/auth/register
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
 ###

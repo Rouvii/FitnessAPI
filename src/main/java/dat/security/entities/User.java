@@ -27,31 +27,16 @@ public class User implements Serializable, ISecurityUser {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
-
     @Basic(optional = false)
-    @Column(name = "username", length = 25, unique = true)
+    @Column(name = "username", length = 25)
     private String username;
-
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
 
-    @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
+    @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_name", referencedColumnName = "username")}, inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Role> roles = new HashSet<>();
-
-    public User(String username) {
-        this.username = username;
-    }
-
-    public User(int id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-    }
 
     public Set<String> getRolesAsStrings() {
         if (roles.isEmpty()) {
@@ -68,13 +53,13 @@ public class User implements Serializable, ISecurityUser {
         return BCrypt.checkpw(pw, this.password);
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
+    public User(String userName, String userPass) {
+        this.username = userName;
+        this.password = BCrypt.hashpw(userPass, BCrypt.gensalt());
     }
 
-    public User(String username, Set<Role> roleEntityList) {
-        this.username = username;
+    public User(String userName, Set<Role> roleEntityList) {
+        this.username = userName;
         this.roles = roleEntityList;
     }
 
@@ -96,3 +81,4 @@ public class User implements Serializable, ISecurityUser {
                 });
     }
 }
+

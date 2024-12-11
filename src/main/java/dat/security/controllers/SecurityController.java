@@ -89,6 +89,9 @@ public class SecurityController implements ISecurityController {
         };
     }
 
+
+
+
     @Override
     public Handler authenticate() throws UnauthorizedResponse {
 
@@ -127,12 +130,12 @@ public class SecurityController implements ISecurityController {
             throw new UnauthorizedResponse("You need to log in, dude!");
         }
         Set<String> roleNames = allowedRoles.stream()
-                   .map(RouteRole::toString)  // Convert RouteRoles to  Set of Strings
-                   .collect(Collectors.toSet());
+                .map(RouteRole::toString)  // Convert RouteRoles to  Set of Strings
+                .collect(Collectors.toSet());
         return user.getRoles().stream()
-                   .map(String::toUpperCase)
-                   .anyMatch(roleNames::contains);
-        }
+                .map(String::toUpperCase)
+                .anyMatch(roleNames::contains);
+    }
 
     @Override
     public String createToken(UserDTO user) {
@@ -188,7 +191,7 @@ public class SecurityController implements ISecurityController {
                 ctx.status(404).json("{\"msg\": \"User not found\"}");
 
 
-                
+
             }
         };
     }
