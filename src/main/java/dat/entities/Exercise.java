@@ -40,6 +40,11 @@ public class Exercise {
     @JsonBackReference
     private Session session;
 
+    public Exercise(Integer id, Session session) {
+        this.id = id;
+        this.session = session;
+    }
+
     public Exercise(String name, MuscleGroup muscleGroup, String description, List<Set> sets, Session session) {
         this.name = name;
         this.muscleGroup = muscleGroup;

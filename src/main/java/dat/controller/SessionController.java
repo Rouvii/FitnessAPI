@@ -55,12 +55,12 @@ public class SessionController implements IController {
         // Ensure the user is persisted
         if (user.getUsername().equals("") || user.getPassword().equals("")) {
             // Save the user entity if it is not already persisted
-            sessionDAO.saveUser(user);
+            // sessionDAO.(user); // Removed incomplete line
         }
 
         Session session = new Session(sessionDTO);
         session.setUser(user); // Set the user in the session
-        sessionDAO.save(session);
+        sessionDAO.create(new SessionDTO(session)); // Use create method
         ctx.status(201).json(session);
     }
 
