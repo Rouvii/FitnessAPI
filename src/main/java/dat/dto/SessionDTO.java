@@ -20,12 +20,8 @@ public class SessionDTO {
     public SessionDTO(Session session) {
         this.id = session.getId();
         this.user = new UserDTO(session.getUser());
-        this.exercises = session.getExercise().stream()
-                .map(exercise -> {
-                    ExerciseDTO exerciseDTO = new ExerciseDTO(exercise);
-                    exerciseDTO.setSessionId(this.id); // Set sessionId in ExerciseDTO
-                    return exerciseDTO;
-                })
+        this.exercises = session.getExercises().stream()
+                .map(ExerciseDTO::new)
                 .collect(Collectors.toList());
     }
 }

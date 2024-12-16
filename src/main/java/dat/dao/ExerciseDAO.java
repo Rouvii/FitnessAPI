@@ -52,15 +52,17 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            Session session = null;
-            if (exerciseDTO.getSessionId() != null) {
-                session = em.find(Session.class, exerciseDTO.getSessionId());
-                if (session == null) {
-                    throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSessionId() + " not found");
+            List<Session> sessions = null;
+            if (exerciseDTO.getSessionIds() != null) {
+                sessions = exerciseDTO.getSessionIds().stream()
+                        .map(sessionId -> em.find(Session.class, sessionId))
+                        .toList();
+                if (sessions.contains(null)) {
+                    throw new IllegalArgumentException("One or more sessions not found");
                 }
             }
 
-            Exercise exercise = new Exercise(exerciseDTO, session);
+            Exercise exercise = new Exercise(exerciseDTO, sessions);
             em.persist(exercise);
             em.getTransaction().commit();
 
@@ -82,16 +84,19 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
                 throw new IllegalArgumentException("Exercise with ID " + id + " not found");
             }
 
-            Session session = null;
-            if (update.getSessionId() != null) {
-                session = em.find(Session.class, update.getSessionId());
-                if (session == null) {
-                    throw new IllegalArgumentException("Session with ID " + update.getSessionId() + " not found");
+            List<Session> sessions = null;
+            if (update.getSessionIds() != null) {
+                EntityManager finalEm = em;
+                sessions = update.getSessionIds().stream()
+                        .map(sessionId -> finalEm.find(Session.class, sessionId))//Skal måske fikses
+                        .toList();
+                if (sessions.contains(null)) {
+                    throw new IllegalArgumentException("One or more sessions not found");
                 }
             }
 
             exercise.setName(update.getName());
-            exercise.setSession(session);
+            exercise.setSessions(sessions);
             exercise.setDescription(update.getDescription());
             exercise.setMuscleGroup(update.getMuscleGroup());
 

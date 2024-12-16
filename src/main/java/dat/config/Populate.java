@@ -25,8 +25,8 @@ public class Populate {
             // Persist sessions with exercises and sets
             for (Session session : sessions) {
                 em.persist(session);
-                for (Exercise exercise : session.getExercise()) {
-                    exercise.setSession(session);
+                for (Exercise exercise : session.getExercises()) {
+                    exercise.getSessions().add(session);
                     em.persist(exercise);
                     for (Set set : exercise.getSets()) {
                         set.setExercise(exercise); // Ensure bi-directional relationship
@@ -78,10 +78,10 @@ public class Populate {
         // Session 1
         Session session1 = new Session();
         session1.setUser(user);
-        session1.setExercise(List.of(exercise1, exercise2));
+        session1.setExercises(List.of(exercise1, exercise2));
 
-        exercise1.setSession(session1);
-        exercise2.setSession(session1);
+        exercise1.getSessions().add(session1);
+        exercise2.getSessions().add(session1);
 
         return List.of(session1);
     }

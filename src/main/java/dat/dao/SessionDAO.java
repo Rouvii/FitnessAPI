@@ -74,7 +74,7 @@ public class SessionDAO implements IDao<SessionDTO> {
             List<Exercise> exercises = updatedSession.getExercises().stream()
                     .map(dto -> new Exercise(dto, existingSession))
                     .collect(Collectors.toList());
-            existingSession.setExercise(exercises);
+            existingSession.setExercises(exercises);
 
             em.merge(existingSession);
             em.getTransaction().commit();
@@ -90,8 +90,8 @@ public class SessionDAO implements IDao<SessionDTO> {
                 throw new ApiException(404, "Session not found");
             }
 
-            session.getExercise().forEach(exercise -> {
-                exercise.setSession(null);
+            session.getExercises().forEach(exercise -> {
+                exercise.getSessions().remove(session);
                 em.merge(exercise);
             });
 
@@ -100,26 +100,25 @@ public class SessionDAO implements IDao<SessionDTO> {
         }
     }
 
-
     public void save(Session session) {
-        EntityManager em = emf.createEntityManager();
-        try {
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(session);
             em.getTransaction().commit();
-        } finally {
-            em.close();
         }
     }
 
     public void saveUser(User user) {
-        EntityManager em = emf.createEntityManager();
-        try {
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(user);
             em.getTransaction().commit();
-        } finally {
-            em.close();
+        }
+    }
+
+    public User findUserByUsername(String username) {
+        try (EntityManager em = emf.createEntityManager()) {
+            return em.find(User.class, username);
         }
     }
 }

@@ -12,17 +12,39 @@ Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
-  "user": {
-    "id": 1
-  },
+    "user": {
+        "id": 2,
+        "username": "admin",
+        "password": "kev1"
+    },
   "exercises": [
     {
-      "name": "Test Exercise",
-      "description": "TEST",
-      "muscleGroup": "ABS",
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "Push up exercise",
       "sets": [
         {
+          "id": 1,
           "reps": 10,
+          "weight": 0
+        },
+        {
+          "id": 2,
+          "reps": 12,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "Pull up exercise",
+      "sets": [
+        {
+          "id": 3,
+          "reps": 8,
           "weight": 0
         }
       ]
@@ -100,8 +122,8 @@ Authorization: Bearer {{jwt_token}}
 
 {
 
-"username": "user1",
-"password": "password"
+"username": "admin",
+"password": "kev1"
 
 }
 
@@ -113,6 +135,6 @@ Authorization: Bearer {{jwt_token}}
 
 {
   "username": "admin",
-  "password": "admin123"
+  "password": "kev1"
 }
 ###

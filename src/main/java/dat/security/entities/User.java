@@ -9,10 +9,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Purpose: To handle security in the API
- * Author: Thomas Hartmann
- */
 @Entity
 @Table(name = "users")
 @NamedQueries(@NamedQuery(name = "User.deleteAllRows", query = "DELETE from User"))
@@ -30,6 +26,7 @@ public class User implements Serializable, ISecurityUser {
     @Basic(optional = false)
     @Column(name = "username", length = 25)
     private String username;
+
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
@@ -38,17 +35,6 @@ public class User implements Serializable, ISecurityUser {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Role> roles = new HashSet<>();
 
-    public Set<String> getRolesAsStrings() {
-        if (roles.isEmpty()) {
-            return null;
-        }
-        Set<String> rolesAsStrings = new HashSet<>();
-        roles.forEach((role) -> {
-            rolesAsStrings.add(role.getRoleName());
-        });
-        return rolesAsStrings;
-    }
-
     public boolean verifyPassword(String pw) {
         return BCrypt.checkpw(pw, this.password);
     }
@@ -56,11 +42,6 @@ public class User implements Serializable, ISecurityUser {
     public User(String userName, String userPass) {
         this.username = userName;
         this.password = BCrypt.hashpw(userPass, BCrypt.gensalt());
-    }
-
-    public User(String userName, Set<Role> roleEntityList) {
-        this.username = userName;
-        this.roles = roleEntityList;
     }
 
     public void addRole(Role role) {
@@ -81,4 +62,3 @@ public class User implements Serializable, ISecurityUser {
                 });
     }
 }
-

@@ -65,7 +65,7 @@ public class SecurityDAO implements ISecurityDAO {
             } else {
                 // Check if user role exists, if not create it
                 if (userRole == null) {
-                    userRole = new Role("user");
+                    userRole = new Role("USER");
                     em.persist(userRole);
                 }
                 userEntity.addRole(userRole);

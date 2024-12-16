@@ -3,18 +3,20 @@ package dat.controller;
 import dat.dao.ExerciseDAO;
 import dat.dto.ExerciseDTO;
 import dat.entities.Exercise;
+import dat.entities.Session;
 import dat.exception.ApiException;
 import dat.exception.Message;
 import io.javalin.http.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class ExerciseController implements IController {
     private final ExerciseDAO exerciseDAO;
     private final Logger log = LoggerFactory.getLogger(ExerciseController.class);
 
-    public ExerciseController(ExerciseDAO excersieDAO) {
-        this.exerciseDAO = excersieDAO;
+    public ExerciseController(ExerciseDAO exerciseDAO) {
+        this.exerciseDAO = exerciseDAO;
     }
 
     @Override
@@ -42,7 +44,8 @@ public class ExerciseController implements IController {
     public void create(Context ctx) {
         try {
             ExerciseDTO exerciseDTO = ctx.bodyAsClass(ExerciseDTO.class);
-            Exercise exercise = new Exercise(exerciseDTO, null);
+            Session session = new Session();
+            Exercise exercise = new Exercise(exerciseDTO, session);
             ExerciseDTO createdExercise = exerciseDAO.create(exerciseDTO);
             ctx.status(201).json(createdExercise);
         } catch (Exception e) {
@@ -86,7 +89,7 @@ public class ExerciseController implements IController {
             int id = Integer.parseInt(ctx.pathParam("id"));
 
             // Call the delete method in DAO. Assuming delete doesn't return anything.
-           exerciseDAO.delete(id); // If the deletion fails, an exception will be thrown.
+            exerciseDAO.delete(id); // If the deletion fails, an exception will be thrown.
 
             // If deletion is successful, return a 204 (No Content) status
             ctx.status(204);

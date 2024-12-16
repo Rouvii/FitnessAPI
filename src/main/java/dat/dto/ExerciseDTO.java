@@ -20,7 +20,7 @@ public class ExerciseDTO {
     private MuscleGroup muscleGroup;
     private String description;
     private List<SetDTO> sets = new ArrayList<>();
-    private Integer sessionId; // Use sessionId instead of full SessionDTO to avoid circular reference
+    private List<Integer> sessionIds = new ArrayList<>(); // Use sessionIds to handle many-to-many relationship
 
     public ExerciseDTO(Exercise exercise) {
         this.id = exercise.getId();
@@ -28,14 +28,14 @@ public class ExerciseDTO {
         this.muscleGroup = exercise.getMuscleGroup();
         this.description = exercise.getDescription();
         this.sets = exercise.getSets() != null ? exercise.getSets().stream().map(SetDTO::new).collect(Collectors.toList()) : new ArrayList<>();
-        this.sessionId = exercise.getSession() != null ? exercise.getSession().getId() : null;
+        this.sessionIds = exercise.getSessions() != null ? exercise.getSessions().stream().map(session -> session.getId()).collect(Collectors.toList()) : new ArrayList<>();
     }
 
-    public ExerciseDTO(String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, int sessionId) {
+    public ExerciseDTO(String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, List<Integer> sessionIds) {
         this.name = name;
         this.muscleGroup = muscleGroup;
         this.description = description;
         this.sets = sets;
-        this.sessionId = sessionId;
+        this.sessionIds = sessionIds;
     }
 }

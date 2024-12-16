@@ -33,29 +33,39 @@ public class Exercise {
     @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @BatchSize(size = 10)
     @JsonManagedReference
-    private List<Set> sets;
+    private List<Set> sets = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "session_id")
+    @ManyToMany(mappedBy = "exercises")
     @JsonBackReference
-    private Session session;
+    private List<Session> sessions = new ArrayList<>();
 
-    public Exercise(String name, MuscleGroup muscleGroup, String description, List<Set> sets, Session session) {
+    public Exercise(String name, MuscleGroup muscleGroup, String description, List<Set> sets, List<Session> sessions) {
         this.name = name;
         this.muscleGroup = muscleGroup;
         this.description = description;
         this.sets = sets != null ? sets : new ArrayList<>();
-        this.session = session;
+        this.sessions = sessions != null ? sessions : new ArrayList<>();
+    }
+
+    public Exercise(ExerciseDTO exerciseDTO, List<Session> sessions) {
+        this.name = exerciseDTO.getName();
+        this.muscleGroup = exerciseDTO.getMuscleGroup();
+        this.description = exerciseDTO.getDescription();
+        this.sets = exerciseDTO.getSets() != null ? exerciseDTO.getSets().stream()
+                .map(setDTO -> new Set(setDTO.getReps(), setDTO.getWeight(), this))
+                .toList() : new ArrayList<>();
+        this.sessions = sessions != null ? sessions : new ArrayList<>();
     }
 
     public Exercise(ExerciseDTO exerciseDTO, Session session) {
         this.name = exerciseDTO.getName();
         this.muscleGroup = exerciseDTO.getMuscleGroup();
         this.description = exerciseDTO.getDescription();
-        this.session = session;
         this.sets = exerciseDTO.getSets() != null ? exerciseDTO.getSets().stream()
                 .map(setDTO -> new Set(setDTO.getReps(), setDTO.getWeight(), this))
                 .toList() : new ArrayList<>();
+        this.sessions = new ArrayList<>();
+        this.sessions.add(session);
     }
 
     @Override
@@ -68,11 +78,11 @@ public class Exercise {
                 muscleGroup == exercise.muscleGroup &&
                 Objects.equals(description, exercise.description) &&
                 Objects.equals(sets, exercise.sets) &&
-                Objects.equals(session, exercise.session);
+                Objects.equals(sessions, exercise.sessions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, muscleGroup, description, sets, session);
+        return Objects.hash(id, name, muscleGroup, description, sets, sessions);
     }
 }

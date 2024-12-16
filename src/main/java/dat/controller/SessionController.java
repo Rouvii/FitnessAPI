@@ -46,22 +46,45 @@ public class SessionController implements IController {
     }
 
     public void create(Context ctx) {
-        SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
-        UserDTO userDTO = sessionDTO.getUser();
+        try {
+            log.debug("Starting create method");
 
-        // Convert UserDTO to User
-        User user = new User(userDTO.getUsername(), userDTO.getPassword());
+            UserDTO userDTO = ctx.bodyAsClass(UserDTO.class);
+            log.debug("Received UserDTO: {}", userDTO);
 
-        // Ensure the user is persisted
-        if (user.getUsername().equals("") || user.getPassword().equals("")) {
-            // Save the user entity if it is not already persisted
-            sessionDAO.saveUser(user);
+            User user = sessionDAO.findUserByUsername(userDTO.getUsername());
+            log.debug("Found user: {}", user);
+
+            if (user == null) {
+                log.debug("User not found, creating new user");
+                user = new User(userDTO.getUsername(), userDTO.getPassword());
+                if (user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword().isEmpty()) {
+                    log.error("Username or password cannot be null or empty");
+                    throw new ApiException(400, "Username or password cannot be null or empty");
+                }
+                sessionDAO.saveUser(user);
+                log.debug("New user saved: {}", user);
+            }
+
+            SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
+            log.debug("Received SessionDTO: {}", sessionDTO);
+
+            Session session = new Session(sessionDTO);
+            session.setUser(user);
+            log.debug("Session created: {}", session);
+
+            sessionDAO.save(session);
+            log.debug("Session saved: {}", session);
+
+            ctx.status(201).json(session);
+            log.debug("Response sent with status 201");
+        } catch (ApiException e) {
+            log.error("ApiException occurred: {}", e.getMessage());
+            ctx.status(e.getStatusCode()).json(new Message(e.getStatusCode(), e.getMessage()));
+        } catch (Exception e) {
+            log.error("Exception occurred: {}", e.getMessage());
+            ctx.status(500).json(new Message(500, "Internal server error"));
         }
-
-        Session session = new Session(sessionDTO);
-        session.setUser(user); // Set the user in the session
-        sessionDAO.save(session);
-        ctx.status(201).json(session);
     }
 
     @Override
