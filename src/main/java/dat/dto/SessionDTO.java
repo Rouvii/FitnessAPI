@@ -1,5 +1,6 @@
 package dat.dto;
 
+import dat.entities.Exercise;
 import dat.entities.Session;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,17 +16,13 @@ public class SessionDTO {
 
     private int id;
     private UserDTO user;
-    private List<ExerciseDTO> exercises;
+    private List<Integer> exerciseIds;
 
     public SessionDTO(Session session) {
         this.id = session.getId();
         this.user = new UserDTO(session.getUser());
-        this.exercises = session.getExercise().stream()
-                .map(exercise -> {
-                    ExerciseDTO exerciseDTO = new ExerciseDTO(exercise);
-                    exerciseDTO.setSessionId(this.id); // Set sessionId in ExerciseDTO
-                    return exerciseDTO;
-                })
+        this.exerciseIds = session.getExercise().stream()
+                .map(Exercise::getId)
                 .collect(Collectors.toList());
     }
 }
