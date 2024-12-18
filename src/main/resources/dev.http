@@ -100,8 +100,8 @@ Authorization: Bearer {{jwt_token}}
 
 {
 
-"username": "user1",
-"password": "password"
+"username": "admin",
+"password": "admin123"
 
 }
 
