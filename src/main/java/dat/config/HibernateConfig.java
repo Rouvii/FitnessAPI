@@ -1,10 +1,7 @@
 package dat.config;
 
 
-import dat.entities.Exercise;
-import dat.entities.MuscleGroup;
-import dat.entities.Session;
-import dat.entities.Set;
+import dat.entities.*;
 import dat.security.entities.Role;
 import dat.security.entities.User;
 import dat.util.Utils;
@@ -53,6 +50,7 @@ public class HibernateConfig {
         configuration.addAnnotatedClass(Exercise.class);
         configuration.addAnnotatedClass(Set.class);
         configuration.addAnnotatedClass(MuscleGroup.class);
+        configuration.addAnnotatedClass(Workout.class);
 
 
     }

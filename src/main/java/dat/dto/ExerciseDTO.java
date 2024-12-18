@@ -28,7 +28,7 @@ public class ExerciseDTO {
         this.muscleGroup = exercise.getMuscleGroup();
         this.description = exercise.getDescription();
         this.sets = exercise.getSets() != null ? exercise.getSets().stream().map(SetDTO::new).collect(Collectors.toList()) : new ArrayList<>();
-        this.sessionId = exercise.getSession() != null ? exercise.getSession().getId() : null;
+        this.sessionId = exercise.getSessions().get(0).getId();
     }
 
     public ExerciseDTO(String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, int sessionId) {

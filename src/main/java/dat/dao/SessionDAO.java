@@ -88,7 +88,7 @@ public class SessionDAO implements IDao<SessionDTO> {
                 throw new ApiException(404, "Session not found");
             }
             session.getExercise().forEach(exercise -> {
-                exercise.setSession(null);
+                exercise.setSessions(null);
                 em.merge(exercise);
             });
             em.remove(session);
