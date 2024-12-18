@@ -36,7 +36,11 @@ public class Exercise {
     private List<Set> sets;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "session_id")
+    @JoinTable(
+            name = "session_exercise",
+            joinColumns = @JoinColumn(name = "exercise_id"),
+            inverseJoinColumns = @JoinColumn(name = "session_id")
+    )
     @JsonBackReference
     private List<Session>sessions;
 

@@ -26,7 +26,7 @@ public class Populate {
             for (Session session : sessions) {
                 em.persist(session);
                 for (Exercise exercise : session.getExercise()) {
-                    exercise.setSession(session);
+                    exercise.setSessions(sessions);
                     em.persist(exercise);
                     for (Set set : exercise.getSets()) {
                         set.setExercise(exercise); // Ensure bi-directional relationship
@@ -79,9 +79,6 @@ public class Populate {
         Session session1 = new Session();
         session1.setUser(user);
         session1.setExercise(List.of(exercise1, exercise2));
-
-        exercise1.setSession(session1);
-        exercise2.setSession(session1);
 
         return List.of(session1);
     }

@@ -27,7 +27,7 @@ public class Session {
     private User user;
     private String name;
 
-    @ManyToMany(mappedBy = "session", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "sessions")
     @JsonManagedReference
     private List<Exercise> exercise;
 
