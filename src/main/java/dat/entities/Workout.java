@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -28,6 +29,9 @@ public class Workout {
     //User relation
     @ManyToOne
     private User user;
+
+//    @OneToMany
+//    private List<Set> sets;
 
     public Workout(LocalDate date, Session session, User user) {
         this.date = date;
