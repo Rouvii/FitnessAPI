@@ -7,7 +7,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseDAO implements IDao<ExerciseDTO> {
@@ -52,71 +51,56 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
     public ExerciseDTO create(ExerciseDTO exerciseDTO) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-
-            List<Session> sessions = new ArrayList<>();
-            if (exerciseDTO.getSessionId() != null) {
-                sessions = em.createQuery("SELECT s FROM Session s WHERE s.id = :id", Session.class)
-                        .setParameter("id", exerciseDTO.getSessionId())
-                        .getResultList();
-                if (sessions == null) {
-                    throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSessionId() + " not found");
-                }
-            }
-
-            Exercise exercise = new Exercise(exerciseDTO, sessions);
+            Exercise exercise = new Exercise(exerciseDTO.getId());
             em.persist(exercise);
             em.getTransaction().commit();
-
             return new ExerciseDTO(exercise);
-        } catch (Exception e) {
+        } catch (PersistenceException e) {
             throw new IllegalStateException("Error creating exercise: " + e.getMessage(), e);
         }
     }
 
-    @Override
-    public void update(int id, ExerciseDTO update) {
-        try (EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
-
-            Exercise exercise = em.find(Exercise.class, id);
-            if (exercise == null) {
-                throw new IllegalArgumentException("Exercise with ID " + id + " not found");
-            }
-
-            List<Session> sessions = new ArrayList<>();
-            if (update.getSessionId() != null) {
-                sessions = em.createQuery("SELECT s FROM Session s WHERE s.id = :id", Session.class)
-                        .setParameter("id", update.getSessionId())
-                        .getResultList();
-                if (sessions == null) {
-                    throw new IllegalArgumentException("Session with ID " + update.getSessionId() + " not found");
+        @Override
+        public void update (int id, ExerciseDTO update){
+            try (EntityManager em = emf.createEntityManager()) {
+                em.getTransaction().begin();
+                Exercise exercise = em.find(Exercise.class, id);
+                if (exercise == null) {
+                    throw new IllegalArgumentException("Exercise with ID " + id + " not found");
                 }
-            }
+                exercise.setName(update.getName());
+                exercise.setMuscleGroup(update.getMuscleGroup());
+                exercise.setDescription(update.getDescription());
+                em.getTransaction().commit();
 
-            exercise.setName(update.getName());
-            exercise.setMuscleGroup(update.getMuscleGroup());
-            exercise.setDescription(update.getDescription());
-            exercise.setSessions(sessions);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new IllegalStateException("Error updating exercise: " + e.getMessage(), e);
+            }
         }
+
+    @Override
+    public void updateReal(int id, Session session) {
+
     }
 
     @Override
-    public void delete(int id) {
-        try (EntityManager em = emf.createEntityManager()) {
-            em.getTransaction().begin();
+        public void delete ( int id){
+            try (EntityManager em = emf.createEntityManager()) {
+                em.getTransaction().begin();
 
-            Exercise exercise = em.find(Exercise.class, id);
-            if (exercise == null) {
-                throw new IllegalArgumentException("Exercise with ID " + id + " not found");
+                Exercise exercise = em.find(Exercise.class, id);
+                if (exercise == null) {
+                    throw new IllegalArgumentException("Exercise with ID " + id + " not found");
+                }
+
+                em.remove(exercise);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                throw new IllegalStateException("Error deleting exercise: " + e.getMessage(), e);
             }
+        }
 
-            em.remove(exercise);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new IllegalStateException("Error deleting exercise: " + e.getMessage(), e);
+    public Exercise getExerciseEntityById(int exerciseId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            return em.find(Exercise.class, exerciseId);
         }
     }
 }

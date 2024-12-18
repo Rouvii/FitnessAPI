@@ -13,22 +13,17 @@ Authorization: Bearer {{jwt_token}}
 
 {
   "user": {
-    "id": 1
+    "username": "admin",
+    "password": "admin123"
   },
-  "exercises": [
-    {
-      "name": "Test Exercise",
-      "description": "TEST",
-      "muscleGroup": "ABS",
-      "sets": [
-        {
-          "reps": 10,
-          "weight": 0
-        }
-      ]
-    }
-  ]
+  "exercises": []
 }
+
+###
+PUT {{URL}}/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
 ###
 PUT {{URL}}/api/sessions/1
 Content-Type: application/json

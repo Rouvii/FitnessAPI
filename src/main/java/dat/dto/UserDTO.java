@@ -9,15 +9,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserDTO {
-    private int id;
     private String username;
     private String password;
 
-
-    public UserDTO(int id, String username) {
-        this.id = id;
+    public UserDTO(String username) {
         this.username = username;
-
     }
 
     public UserDTO(String username, String password) {

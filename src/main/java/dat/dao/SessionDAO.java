@@ -1,5 +1,6 @@
 package dat.dao;
 
+import dat.dto.ExerciseDTO;
 import dat.dto.SessionDTO;
 import dat.entities.Session;
 import dat.entities.Exercise;
@@ -7,9 +8,9 @@ import dat.exception.ApiException;
 import dat.security.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SessionDAO implements IDao<SessionDTO> {
 
@@ -27,11 +28,28 @@ public class SessionDAO implements IDao<SessionDTO> {
         return instance;
     }
 
+    public void saveOrUpdateUser(User user) {
+        try (EntityManager em = emf.createEntityManager()) {
+            em.getTransaction().begin();
+            User existingUser = em.find(User.class, user.getUsername());
+            if (existingUser != null) {
+                // Merge eksisterende bruger
+                em.merge(existingUser);
+            } else {
+                // Persist en ny bruger
+                em.persist(user);
+            }
+            em.getTransaction().commit();
+        } catch (PersistenceException e) {
+            throw new IllegalStateException("Error persisting/updating user: " + e.getMessage(), e);
+        }
+    }
+
     @Override
     public List<SessionDTO> getAll() {
         try (EntityManager em = emf.createEntityManager()) {
             List<Session> sessions = em.createQuery("SELECT s FROM Session s", Session.class).getResultList();
-            return sessions.stream().map(SessionDTO::new).collect(Collectors.toList());
+            return sessions.stream().map(SessionDTO::new).toList();
         }
     }
 
@@ -46,129 +64,161 @@ public class SessionDAO implements IDao<SessionDTO> {
         }
     }
 
+
+
+
     @Override
-    public SessionDTO create(SessionDTO sessionDto) {
+    public SessionDTO create(SessionDTO sessionDTO) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            // Fetch or create user
-            User user = em.find(User.class, sessionDto.getUser().getUsername());
-            if (user == null) {
-                user = new User(sessionDto.getUser().getUsername(), sessionDto.getUser().getPassword());
-                em.persist(user);
+            // Create session based on sessionDTO
+            Session session = new Session(sessionDTO);
+
+            // Persist the user if it is not already persistent
+            if (sessionDTO.getUser() != null && sessionDTO.getUser().getUsername() != null) {
+                // Try to fetch the user from the database using the username
+                User user = em.find(User.class, sessionDTO.getUser().getUsername());
+
+                // If the user is not persistent, create and persist it
+                if (user == null) {
+                    user = new User(sessionDTO.getUser().getUsername(), sessionDTO.getUser().getPassword());
+                    em.persist(user); // Persist the user
+                }
+
+                // Attach the persisted user to the session
+                session.setUser(user);
             }
 
-            // Map exercises
-            List<Exercise> exercises = sessionDto.getExerciseIds().stream()
-                    .map(id -> {
-                        Exercise exercise = em.find(Exercise.class, id);
-                        if (exercise == null) {
-                            throw new ApiException(404, "Exercise with ID " + id + " not found");
-                        }
-                        return exercise;
-                    })
-                    .collect(Collectors.toList());
+            // Add exercises to the session if they exist
+            if (sessionDTO.getExercises() != null) {
+                for (ExerciseDTO exerciseDTO : sessionDTO.getExercises()) {
+                    Exercise exercise = em.find(Exercise.class, exerciseDTO.getId());
+                    if (exercise == null) {
+                        throw new IllegalArgumentException("Exercise with ID " + exerciseDTO.getId() + " not found");
+                    }
+                    session.addExercise(exercise); // Add exercise to the session
+                }
+            }
 
-            // Create session
-            Session session = new Session();
-            session.setName(sessionDto.getName());
-            session.setUser(user);
-            session.setExercise(exercises);
+            // Use merge instead of persist to handle detached entities
+            session = em.merge(session);
 
-            // Persist session
-            em.persist(session);
+            // Commit the transaction
             em.getTransaction().commit();
+
+            // Return the created session as DTO
             return new SessionDTO(session);
-        } catch (Exception e) {
-            throw new ApiException(400, "Error creating session: " + e.getMessage());
+
+        } catch (PersistenceException e) {
+            // If an error occurs during persistence, throw an IllegalStateException
+            throw new IllegalStateException("Error creating session: " + e.getMessage(), e);
         }
     }
 
     @Override
-    public void update(int id, SessionDTO updatedSession) {
+    public void update(int id, SessionDTO sessionDTO) {
+
+    }
+
+
+
+    @Override
+    public void updateReal(int id, Session session) {
+        System.out.println("__________________________");
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            // Find existing session
+            // Hent den eksisterende session
             Session existingSession = em.find(Session.class, id);
             if (existingSession == null) {
-                throw new ApiException(404, "Session not found");
+                throw new IllegalArgumentException("Session not found");
             }
 
-            // Update exercises
-            List<Exercise> updatedExercises = updatedSession.getExerciseIds().stream()
-                    .map(exerciseId -> {
-                        Exercise exercise = em.find(Exercise.class, exerciseId);
-                        if (exercise == null) {
-                            throw new ApiException(404, "Exercise with ID " + exerciseId + " not found");
-                        }
-                        return exercise;
-                    })
-                    .collect(Collectors.toList());
+            // Gennemgå de øvelser, der skal tilføjes
+            for (Exercise exercise : session.getExercises()) {
+                // Hent eksisterende øvelse fra databasen
+                Exercise existingExercise = em.find(Exercise.class, exercise.getId());
+                if (existingExercise == null) {
+                    throw new IllegalArgumentException("Exercise not found");
+                }
 
-            existingSession.setName(updatedSession.getName());
-            existingSession.setExercise(updatedExercises);
+                // Sørg for, at sessionen ikke allerede er tilføjet til øvelsens session-liste
+                if (!existingExercise.getSessions().contains(existingSession)) {
+                    // Tilføj sessionen til øvelsens session-liste
+                    existingExercise.getSessions().add(existingSession);
+                }
 
-            em.merge(existingSession);
+                // Tilføj øvelsen til sessionens exercise-liste
+                existingSession.addExercise(existingExercise);
+            }
+
+            // Gem ændringerne i begge enheder
             em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new ApiException(400, "Error updating session: " + e.getMessage());
+            System.out.println("__________________________");
         }
     }
+
+
+
 
     @Override
     public void delete(int id) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-
-            // Find session
             Session session = em.find(Session.class, id);
             if (session == null) {
                 throw new ApiException(404, "Session not found");
             }
-
-            // Clear relationships with exercises
-            session.getExercise().forEach(exercise -> {
-                exercise.getSessions().remove(session); // Update exercise sessions list
+            session.getExercises().forEach(exercise -> {
+                exercise.setSessions(null);
                 em.merge(exercise);
             });
-
-            em.remove(session); // Remove the session
+            em.remove(session);
             em.getTransaction().commit();
-        } catch (Exception e) {
-            throw new ApiException(400, "Error deleting session: " + e.getMessage());
         }
     }
 
-    // Utility method to fetch user by username
-    public User findUserByUsername(String username) {
-        try (EntityManager em = emf.createEntityManager()) {
-            return em.createQuery("SELECT u FROM User u WHERE u.username = :username", User.class)
-                    .setParameter("username", username)
-                    .getResultStream()
-                    .findFirst()
-                    .orElse(null);
-        }
-    }
-
-    // Utility method to save a new user
-    public void saveUser(User user) {
+    public void addExercisesToSession(int sessionId, List<Integer> exerciseIds) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
-            em.persist(user);
+
+            // Find the session by ID
+            Session session = em.find(Session.class, sessionId);
+            if (session == null) {
+                throw new ApiException(404, "Session not found");
+            }
+
+            // Initialize the exercise collection
+            session.getExercises().size();
+
+
+            // Find and add each exercise to the session
+            for (int exerciseId : exerciseIds) {
+                Exercise exercise = em.find(Exercise.class, exerciseId);
+                if (exercise == null) {
+                    throw new ApiException(404, "Exercise with ID " + exerciseId + " not found");
+                }
+                session.addExercise(exercise);
+            }
+
+            // Merge the session to update it in the database
+            em.merge(session);
             em.getTransaction().commit();
+        } catch (PersistenceException e) {
+            throw new IllegalStateException("Error adding exercises to session: " + e.getMessage(), e);
         }
     }
 
-    public List<Exercise> findExercisesByIds(List<Integer> ids) {
+    public User findUserByUsername(String username) {
         try (EntityManager em = emf.createEntityManager()) {
-            return ids.stream()
-                    .map(id -> {
-                        Exercise exercise = em.find(Exercise.class, id);
-                        if (exercise == null) throw new ApiException(404, "Exercise ID " + id + " not found");
-                        return exercise;
-                    })
-                    .collect(Collectors.toList());
+            return em.find(User.class, username);
+        }
+    }
+
+    public Session getSessionEntityById(int sessionId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            return em.find(Session.class, sessionId);
         }
     }
 }

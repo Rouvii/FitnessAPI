@@ -1,0 +1,752 @@
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T182257.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T182242.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T182234.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T182228.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T181920.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T181914.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T181824.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T181822.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T181756.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T181540.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T181530.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T181526.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180923.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T180915.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180655.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180643.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T180635.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180351.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180326.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T180248.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180209.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180150.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T180113.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180039.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T180022.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T180020.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T175619.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T175618.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T175512.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T175510.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T175307.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T175305.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T174740.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T174737.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T174631.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T174605.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T174013.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T173905.200.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T173819.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T173815.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T173134.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T173132.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T173034.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T173032.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T172817.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T172813.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T172547.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T172546.201.json
+
+###
+
+PUT http://localhost:7070/api/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 0
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2024-12-18T172451.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzOTE2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-nv00czb2j1Y9slRCwlue7sxwUxfuWbFnmIsDr-45J0
+Content-Length: 90
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T172447.201.json
+
+###
+

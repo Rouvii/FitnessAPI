@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Getter
 @Setter
+
 public class Exercise {
 
     @Id
@@ -30,22 +32,22 @@ public class Exercise {
 
     private String description;
 
-    @OneToMany(mappedBy = "exercise", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "exercise", fetch = FetchType.EAGER)
     @BatchSize(size = 10)
+    @ToString.Exclude
     @JsonManagedReference
-    private List<Set> sets;
+    private List<Set> sets = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "session_exercise",
             joinColumns = @JoinColumn(name = "exercise_id"),
             inverseJoinColumns = @JoinColumn(name = "session_id")
     )
-    @JsonBackReference
     private List<Session>sessions;
 
 
-    public Exercise(Integer id, List<Session> session) {
+    public Exercise(int id, List<Session> session) {
         this.id = id;
         this.sessions = session;
     }
@@ -68,8 +70,8 @@ public class Exercise {
                 .toList() : new ArrayList<>();
     }
 
-    public Exercise(Integer integer) {
-        this.id = integer;
+    public Exercise(int id) {
+        this.id = id;
     }
 
     @Override
@@ -77,19 +79,12 @@ public class Exercise {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Exercise exercise = (Exercise) o;
-        return id == exercise.id &&
-                Objects.equals(name, exercise.name) &&
-                muscleGroup == exercise.muscleGroup &&
-                Objects.equals(description, exercise.description) &&
-                Objects.equals(sets, exercise.sets) &&
-                Objects.equals(sessions, exercise.sessions);
+        return id == exercise.id;
     }
-
-
-
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, muscleGroup, description, sets, sessions);
+        return Objects.hash(id);
     }
+
 }

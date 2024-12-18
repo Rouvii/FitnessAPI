@@ -1,5 +1,6 @@
 package dat.security.entities;
 
+import dat.dto.UserDTO;
 import dat.entities.Session;
 import jakarta.persistence.*;
 import lombok.*;
@@ -41,6 +42,11 @@ public class User implements Serializable, ISecurityUser {
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_name", referencedColumnName = "username")}, inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Role> roles = new HashSet<>();
+
+    public User(UserDTO userDTO) {
+        this.username = userDTO.getUsername();
+        this.password = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
+    }
 
     public Set<String> getRolesAsStrings() {
         if (roles.isEmpty()) {
