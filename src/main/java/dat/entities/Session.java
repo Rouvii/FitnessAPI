@@ -31,11 +31,12 @@ public class Session {
     @JsonManagedReference
     private List<Exercise> exercise;
 
-    public Session(SessionDTO sessionDTO) {
-        this.id = sessionDTO.getId();
-        this.user = new User(sessionDTO.getUser().getUsername(), sessionDTO.getUser().getPassword());
-        this.exercise = sessionDTO.getExerciseIds().stream().map(Exercise::new).collect(Collectors.toList());
+    public Session(SessionDTO sessionDTO, List<Exercise> exercises, User user) {
+        this.name = sessionDTO.getName();
+        this.user = user;
+        this.exercise = exercises; // Properly mapped list of exercises fetched beforehand
     }
+
 
     @Override
     public boolean equals(Object o) {
