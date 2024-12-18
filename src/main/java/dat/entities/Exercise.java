@@ -32,13 +32,13 @@ public class Exercise {
 
     private String description;
 
-    @OneToMany(mappedBy = "exercise", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "exercise", fetch = FetchType.EAGER)
     @BatchSize(size = 10)
     @ToString.Exclude
     @JsonManagedReference
-    private List<Set> sets;
+    private List<Set> sets = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "session_exercise",
             joinColumns = @JoinColumn(name = "exercise_id"),

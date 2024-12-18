@@ -31,7 +31,8 @@ public class ExerciseDTO {
                 .collect(Collectors.toList());
     }
 
-    public ExerciseDTO(String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, int sessionId) {
+    public ExerciseDTO(int id,String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets) {
+        this.id = id;
         this.name = name;
         this.muscleGroup = muscleGroup;
         this.description = description;

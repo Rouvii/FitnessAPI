@@ -2,6 +2,7 @@ package dat.dao;
 
 import dat.dto.ExerciseDTO;
 import dat.entities.Exercise;
+import dat.entities.Session;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceException;
@@ -75,7 +76,12 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
             }
         }
 
-        @Override
+    @Override
+    public void updateReal(int id, Session session) {
+
+    }
+
+    @Override
         public void delete ( int id){
             try (EntityManager em = emf.createEntityManager()) {
                 em.getTransaction().begin();
@@ -92,4 +98,9 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
             }
         }
 
+    public Exercise getExerciseEntityById(int exerciseId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            return em.find(Exercise.class, exerciseId);
+        }
+    }
 }

@@ -12,26 +12,17 @@ Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
-  "id": 2,
   "user": {
     "username": "admin",
     "password": "admin123"
   },
-  "exercises": [
-    {
-      "id": 1,
-      "name": "Push Up",
-      "muscleGroup": "CHEST",
-      "description": "An exercise to strengthen the chest and triceps."
-    },
-    {
-      "id": 2,
-      "name": "Pull Up",
-      "muscleGroup": "BACK",
-      "description": "A lower-body exercise for the legs and glutes."
-    }
-  ]
+  "exercises": []
 }
+
+###
+PUT {{URL}}/sessions/addExerciseToSession/2/2
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
 
 ###
 PUT {{URL}}/api/sessions/1
