@@ -1,77 +1,89 @@
+### Step 1: Register a new user
+POST {{URL}}/auth/register
+Content-Type: application/json
 
-GET {{URL}}/sessions
-Content-Type: application/json
-Authorization: Bearer {{jwt_token}}
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
 ###
-GET {{URL}}/sessions/1
+
+### Step 2: Login to get JWT token
+POST {{URL}}/auth/login
 Content-Type: application/json
-Authorization: Bearer {{jwt_token}}
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+> {% client.global.set("jwt_token", response.body.token); %}
+
 ###
+
+### Step 3: Create an empty session (no exercises initially)
 POST {{URL}}/sessions
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
-  "id": 2,
   "user": {
     "username": "admin",
     "password": "admin123"
   },
-  "exercises": [
-    {
-      "id": 1,
-      "name": "Push Up",
-      "muscleGroup": "CHEST",
-      "description": "An exercise to strengthen the chest and triceps."
-    },
-    {
-      "id": 2,
-      "name": "Pull Up",
-      "muscleGroup": "BACK",
-      "description": "A lower-body exercise for the legs and glutes."
-    }
-  ]
+  "exercises": []
 }
 
 ###
-PUT {{URL}}/api/sessions/1
+
+### Step 4: Add exercises to the created session (session ID = 1)
+PUT {{URL}}/sessions/1
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
-  "user": {
-    "id": 1,
-    "username": "user1",
-    "password": "password"
-  },
-  "exercise": [
+  "exercises": [
     {
-      "name": "Test Exercise",
-      "description": "TEST",
-      "muscleGroup": "ABS",
-      "sets": [
-        {
-          "reps": 15,
-          "weight": 0
-        }
-      ]
+      "id": 1
+    },
+    {
+      "id": 2
     }
   ]
 }
+
 ###
-DELETE {{URL}}/sessions/1
+
+### Step 5: Get all sessions
+GET {{URL}}/sessions
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 ###
+
+### Step 6: Get a specific session by ID
+GET {{URL}}/sessions/1
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+###
+
+### Step 7: Get all exercises
 GET {{URL}}/exercises
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
+
 ###
+
+### Step 8: Get an exercise by ID
 GET {{URL}}/exercises/3
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
+
 ###
+
+### Step 9: Create a new exercise
 POST {{URL}}/exercises
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
@@ -81,7 +93,10 @@ Authorization: Bearer {{jwt_token}}
   "description": "TEST",
   "muscleGroup": "ABS"
 }
+
 ###
+
+### Step 10: Update an exercise
 PUT {{URL}}/exercises/3
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
@@ -91,32 +106,18 @@ Authorization: Bearer {{jwt_token}}
   "description": "TESTUPDATED",
   "muscleGroup": "ABS"
 }
-###
-DELETE {{URL}}/exercises/2
-Content-Type: application/json
-Authorization: Bearer {{jwt_token}}
+
 ###
 
-
-POST {{URL}}/auth/login
+### Step 11: Delete an exercise
+DELETE {{URL}}/exercises/3
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
-{
-
-"username": "admin",
-"password": "admin123"
-
-}
-
-> {% client.global.set("jwt_token", response.body.token); %}
 ###
-POST {{URL}}/auth/register
+
+### Step 12: Delete a session
+DELETE {{URL}}/sessions/1
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
-{
-  "username": "admin",
-  "password": "admin123"
-}
-###

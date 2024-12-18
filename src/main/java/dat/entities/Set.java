@@ -22,7 +22,7 @@ public class Set {
     private int reps;  // Number of repetitions for the set.
     private int weight; // Weight lifted for the set.
 
-    @ManyToOne(fetch = FetchType.LAZY)  // Use LAZY fetching for performance optimization
+    @ManyToOne(fetch = FetchType.EAGER)  // Use LAZY fetching for performance optimization
     @JoinColumn(name = "exercise_id", nullable = false) // Ensures Set must be linked to an Exercise.
     @JsonBackReference
     private Exercise exercise; // The Exercise this Set belongs to.

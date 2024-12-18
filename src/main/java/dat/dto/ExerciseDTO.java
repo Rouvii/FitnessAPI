@@ -22,7 +22,7 @@ public class ExerciseDTO {
     private List<SetDTO> sets = new ArrayList<>();
 
     public ExerciseDTO(Exercise exercise) {
-        this.id = exercise.getId();
+        this.id = exercise.getId();  // Ensure the ID is correctly assigned from the Exercise entity
         this.name = exercise.getName();
         this.muscleGroup = exercise.getMuscleGroup();
         this.description = exercise.getDescription();
@@ -31,10 +31,12 @@ public class ExerciseDTO {
                 .collect(Collectors.toList());
     }
 
-    public ExerciseDTO(String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, int sessionId) {
+    public ExerciseDTO(String name, MuscleGroup muscleGroup, String description, List<SetDTO> sets, int id) {
+        this.id = id;  // Ensure the ID is set
         this.name = name;
         this.muscleGroup = muscleGroup;
         this.description = description;
         this.sets = sets;
     }
+
 }

@@ -12,17 +12,19 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @NoArgsConstructor
-public class SessionDTO {
 
-    private int id;
-    private UserDTO user;
-    private List<ExerciseDTO> exercises;
+    public class SessionDTO {
+        private int id;
+        private String name;
+        private UserDTO user; // The user associated with the session
+        private List<ExerciseDTO> exercises; // List of exercises associated with the session
 
-    public SessionDTO(Session session) {
-        this.id = session.getId();
-        this.user = new UserDTO(session.getUser());
-        this.exercises = session.getExercise().stream()
-                .map(ExerciseDTO::new)
-                .collect(Collectors.toList());
+        public SessionDTO(Session session) {
+            this.id = session.getId();
+            this.name = session.getName();
+            this.user = new UserDTO(session.getUser()); // Convert User to UserDTO
+            this.exercises = session.getExercises().stream()
+                    .map(ExerciseDTO::new) // Convert Exercise to ExerciseDTO
+                    .collect(Collectors.toList());
+        }
     }
-}

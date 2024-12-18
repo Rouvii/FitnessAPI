@@ -25,7 +25,7 @@ public class Populate {
             // Persist sessions with exercises and sets
             for (Session session : sessions) {
                 em.persist(session);
-                for (Exercise exercise : session.getExercise()) {
+                for (Exercise exercise : session.getExercises()) {
                     exercise.setSessions(sessions);
                     em.persist(exercise);
                     for (Set set : exercise.getSets()) {
@@ -78,7 +78,7 @@ public class Populate {
         // Session 1
         Session session1 = new Session();
         session1.setUser(user);
-        session1.setExercise(List.of(exercise1, exercise2));
+        session1.setExercises(List.of(exercise1, exercise2));
 
         return List.of(session1);
     }

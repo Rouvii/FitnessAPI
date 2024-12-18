@@ -1,99 +1,40 @@
 package dat.controller;
 
-import dat.dao.SessionDAO;
-import dat.dto.ExerciseDTO;
-import dat.dto.SessionDTO;
-import dat.dto.UserDTO;
+import dat.dao.IDao;
 import dat.entities.Exercise;
 import dat.entities.Session;
-import dat.exception.ApiException;
-import dat.exception.Message;
-import dat.security.entities.User;
 import io.javalin.http.Context;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SessionController implements IController {
-    private final SessionDAO sessionDAO;
-    private final Logger log = LoggerFactory.getLogger(SessionController.class);
 
-    public SessionController(SessionDAO sessionDAO) {
-        this.sessionDAO = sessionDAO;
+    private final IDao<Session> sessionDao;
+    private final IDao<Exercise> exerciseDao;
+
+    public SessionController(IDao<Session> sessionDao, IDao<Exercise> exerciseDao) {
+        this.sessionDao = sessionDao;
+        this.exerciseDao = exerciseDao;
     }
 
     @Override
-    public void getById(Context ctx) {
-        try {
-            int id = Integer.parseInt(ctx.pathParam("id"));
-            SessionDTO session = sessionDAO.getById(id);
-
-            if (session == null) {
-                ctx.status(404);
-                ctx.json(new Message(404, "Session not found"));
-                return;
-            }
-
-            ctx.status(200);
-            ctx.json(session, SessionDTO.class);
-        } catch (NumberFormatException e) {
-            log.error("Invalid ID format: {}", e.getMessage());
-            throw new ApiException(400, "Invalid ID format");
-        } catch (Exception e) {
-            ctx.json(new Message(400, "Invalid request"));
-            log.error("400 {}", e.getMessage());
-            throw new ApiException(400, e.getMessage());
-        }
-    }
-
     public void create(Context ctx) {
         try {
-            SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
-            UserDTO userDTO = sessionDTO.getUser();
-            System.out.println(" "+ userDTO);
-            // Convert UserDTO to User
-            User user = new User(userDTO.getUsername(), userDTO.getPassword());
-            System.out.println(" " + user);
-            // Ensure the user is persisted
-            if (user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword().isEmpty()) {
-                throw new ApiException(400, "User credentials are invalid");
-            }
+            // Parse the Session object from the request body
+            Session session = ctx.bodyAsClass(Session.class);
 
-          List<ExerciseDTO> exercises = sessionDTO.getExercises();
-            if (exercises.isEmpty()) {
-                throw new ApiException(400, "No exercises in session");
-            }
-            sessionDTO.setExercises(exercises);
-           Session session = new Session(sessionDTO);
-            System.out.println(" " + session);
-            session.setUser(user); // Set the user in the session
-            sessionDAO.create(new SessionDTO(session)); // Use create method
-            ctx.status(201).json(session);
-        } catch (ApiException e) {
-            ctx.status(e.getStatusCode()).json(new Message(e.getStatusCode(), e.getMessage()));
+            // Initialize the session's exercises list as empty
+            session.setExercises(List.of());  // Set an empty list for exercises initially
+
+            // Ensure session is created properly (don't pass "id", Hibernate will generate it)
+            session.setId(0);  // Ensure ID is not set manually; Hibernate will handle it
+
+            // Save the session with an empty exercises list
+            session = sessionDao.create(session);
+            ctx.status(201).json(session);  // Respond with the created session
         } catch (Exception e) {
-            ctx.status(500).json(new Message(500, "Internal server error"));
-        }
-    }
-
-    @Override
-    public void getAll(Context ctx) {
-        try {
-            List<SessionDTO> sessionDtos = sessionDAO.getAll();
-
-            if (sessionDtos.isEmpty()) {
-                ctx.status(404);
-                ctx.json(new Message(404, "No sessions found"));
-                return;
-            }
-
-            ctx.status(200);
-            ctx.json(sessionDtos, SessionDTO.class);
-        } catch (ApiException e) {
-            log.error("Error reading all sessions: {}", e.getMessage());
-            ctx.json(new Message(500, "Error reading all sessions"));
-            throw new ApiException(500, e.getMessage());
+            ctx.status(400).result("Failed to create session: " + e.getMessage());
         }
     }
 
@@ -101,13 +42,53 @@ public class SessionController implements IController {
     public void update(Context ctx) {
         try {
             int id = Integer.parseInt(ctx.pathParam("id"));
-            SessionDTO sessionDto = ctx.bodyAsClass(SessionDTO.class);
-            sessionDAO.update(id, sessionDto);
-            ctx.status(200);
-            ctx.json(new Message(200, "Session updated"));
+            Session session = ctx.bodyAsClass(Session.class);
+
+            // Fetch the existing session from the database
+            Session existingSession = sessionDao.getById(id);
+            if (existingSession == null) {
+                ctx.status(404).result("Session not found");
+                return;
+            }
+
+            // Fetch exercises for the session from the database
+            List<Exercise> exercises = session.getExercises().stream()
+                    .map(exercise -> exerciseDao.getById(exercise.getId())) // Fetch each exercise by ID
+                    .filter(exercise -> exercise != null) // Ensure exercises are valid
+                    .collect(Collectors.toList());
+
+            if (!exercises.isEmpty()) {
+                existingSession.setExercises(exercises); // Set the new exercises to the existing session
+            }
+
+            // Update the session in the database
+            sessionDao.update(id, existingSession);
+            ctx.result("Session updated successfully");
+        } catch (NumberFormatException e) {
+            ctx.status(400).result("Invalid ID format");
         } catch (Exception e) {
-            log.error("400 {}", e.getMessage());
-            throw new ApiException(400, e.getMessage());
+            ctx.status(400).result("Failed to update session: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void getAll(Context ctx) {
+        List<Session> sessions = sessionDao.getAll();
+        ctx.json(sessions);
+    }
+
+    @Override
+    public void getById(Context ctx) {
+        try {
+            int id = Integer.parseInt(ctx.pathParam("id"));
+            Session session = sessionDao.getById(id);
+            if (session == null) {
+                ctx.status(404).result("Session not found");
+            } else {
+                ctx.json(session);
+            }
+        } catch (NumberFormatException e) {
+            ctx.status(400).result("Invalid ID format");
         }
     }
 
@@ -115,12 +96,47 @@ public class SessionController implements IController {
     public void delete(Context ctx) {
         try {
             int id = Integer.parseInt(ctx.pathParam("id"));
-            sessionDAO.delete(id);
-            ctx.status(200);
-            ctx.json(new Message(200, "Session deleted"));
+            sessionDao.delete(id);
+            ctx.result("Session deleted successfully");
+        } catch (NumberFormatException e) {
+            ctx.status(400).result("Invalid ID format");
         } catch (Exception e) {
-            log.error("400 {}", e.getMessage());
-            throw new ApiException(400, e.getMessage());
+            ctx.status(400).result("Failed to delete session: " + e.getMessage());
+        }
+    }
+
+    public void addExercises(Context ctx) {
+        try {
+            int sessionId = Integer.parseInt(ctx.pathParam("id"));
+            List<Integer> exerciseIds = ctx.bodyAsClass(List.class);
+
+            List<Exercise> exercises = exerciseIds.stream()
+                    .map(exerciseId -> exerciseDao.getById(exerciseId))
+                    .filter(exercise -> exercise != null)
+                    .collect(Collectors.toList());
+
+            if (exercises.isEmpty()) {
+                ctx.status(400).result("No valid exercises to add");
+                return;
+            }
+
+            // Fetch the session to which we want to add exercises
+            Session session = sessionDao.getById(sessionId);
+            if (session == null) {
+                ctx.status(404).result("Session not found");
+                return;
+            }
+
+            // Add exercises to the session
+            session.getExercises().addAll(exercises);
+
+            // Update the session in the database
+            sessionDao.update(sessionId, session);
+            ctx.result("Exercises added successfully");
+        } catch (NumberFormatException e) {
+            ctx.status(400).result("Invalid ID format");
+        } catch (Exception e) {
+            ctx.status(400).result("Failed to add exercises to session: " + e.getMessage());
         }
     }
 }

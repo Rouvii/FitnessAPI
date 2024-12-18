@@ -1,95 +1,86 @@
 package dat.dao;
 
-import dat.dto.ExerciseDTO;
+import dat.dao.IDao;
 import dat.entities.Exercise;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.PersistenceException;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
-public class ExerciseDAO implements IDao<ExerciseDTO> {
-    private static ExerciseDAO instance;
-    private static EntityManagerFactory emf;
+public class ExerciseDAO implements IDao<Exercise> {
+
+    private final EntityManagerFactory emf;
 
     public ExerciseDAO(EntityManagerFactory emf) {
-        ExerciseDAO.emf = emf;
-    }
-
-    public static ExerciseDAO getInstance(EntityManagerFactory _emf) {
-        if (instance == null) {
-            instance = new ExerciseDAO(_emf);
-        }
-        return instance;
+        this.emf = emf;
     }
 
     @Override
-    public List<ExerciseDTO> getAll() {
-        try (EntityManager em = emf.createEntityManager()) {
-            List<Exercise> exercises = em.createQuery("SELECT e FROM Exercise e", Exercise.class).getResultList();
-            return exercises.stream().map(ExerciseDTO::new).toList();
-        } catch (PersistenceException e) {
-            throw new IllegalStateException("Error fetching exercises: " + e.getMessage(), e);
+    public List<Exercise> getAll() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Exercise> query = em.createQuery("SELECT e FROM Exercise e", Exercise.class);
+            return query.getResultList();
+        } finally {
+            em.close();
         }
     }
 
     @Override
-    public ExerciseDTO getById(int id) {
-        try (EntityManager em = emf.createEntityManager()) {
-            Exercise exercise = em.find(Exercise.class, id);
-            if (exercise == null) {
-                throw new IllegalArgumentException("Exercise with ID " + id + " not found");
-            }
-            return new ExerciseDTO(exercise);
-        } catch (PersistenceException e) {
-            throw new IllegalStateException("Error fetching exercise by ID: " + e.getMessage(), e);
+    public Exercise getById(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Exercise.class, id);
+        } finally {
+            em.close();
         }
     }
 
     @Override
-    public ExerciseDTO create(ExerciseDTO exerciseDTO) {
-        try (EntityManager em = emf.createEntityManager()) {
+    public Exercise create(Exercise exercise) {
+        EntityManager em = emf.createEntityManager();
+        try {
             em.getTransaction().begin();
-            Exercise exercise = new Exercise(exerciseDTO.getId());
             em.persist(exercise);
             em.getTransaction().commit();
-            return new ExerciseDTO(exercise);
-        } catch (PersistenceException e) {
-            throw new IllegalStateException("Error creating exercise: " + e.getMessage(), e);
+            return exercise;
+        } finally {
+            em.close();
         }
     }
 
-        @Override
-        public void update (int id, ExerciseDTO update){
-            try (EntityManager em = emf.createEntityManager()) {
-                em.getTransaction().begin();
-                Exercise exercise = em.find(Exercise.class, id);
-                if (exercise == null) {
-                    throw new IllegalArgumentException("Exercise with ID " + id + " not found");
-                }
-                exercise.setName(update.getName());
-                exercise.setMuscleGroup(update.getMuscleGroup());
-                exercise.setDescription(update.getDescription());
-                em.getTransaction().commit();
-
+    @Override
+    public void update(int id, Exercise updatedExercise) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Exercise existingExercise = em.find(Exercise.class, id);
+            if (existingExercise != null) {
+                existingExercise.setName(updatedExercise.getName());
+                existingExercise.setMuscleGroup(updatedExercise.getMuscleGroup());
+                existingExercise.setDescription(updatedExercise.getDescription());
+                existingExercise.setSets(updatedExercise.getSets());
+                existingExercise.setSessions(updatedExercise.getSessions());
             }
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
+    }
 
-        @Override
-        public void delete ( int id){
-            try (EntityManager em = emf.createEntityManager()) {
-                em.getTransaction().begin();
-
-                Exercise exercise = em.find(Exercise.class, id);
-                if (exercise == null) {
-                    throw new IllegalArgumentException("Exercise with ID " + id + " not found");
-                }
-
+    @Override
+    public void delete(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Exercise exercise = em.find(Exercise.class, id);
+            if (exercise != null) {
                 em.remove(exercise);
-                em.getTransaction().commit();
-            } catch (Exception e) {
-                throw new IllegalStateException("Error deleting exercise: " + e.getMessage(), e);
             }
+            em.getTransaction().commit();
+        } finally {
+            em.close();
         }
-
+    }
 }
