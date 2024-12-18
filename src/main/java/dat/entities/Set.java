@@ -26,6 +26,8 @@ public class Set {
     @JoinColumn(name = "exercise_id", nullable = false) // Ensures Set must be linked to an Exercise.
     @JsonBackReference
     private Exercise exercise; // The Exercise this Set belongs to.
+    @ManyToOne
+    private Workout workout;
 
     // Optional: Constructor for creating a Set object easily.
     public Set(int reps, int weight, Exercise exercise) {

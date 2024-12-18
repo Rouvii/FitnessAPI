@@ -25,17 +25,16 @@ public class Session {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    private String name;
 
-    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "session", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Exercise> exercise;
 
     public Session(SessionDTO sessionDTO) {
         this.id = sessionDTO.getId();
         this.user = new User(sessionDTO.getUser().getUsername(), sessionDTO.getUser().getPassword());
-        this.exercise = sessionDTO.getExerciseIds().stream()
-                .map(exerciseId -> new Exercise(exerciseId, this))
-                .collect(Collectors.toList());
+        this.exercise = sessionDTO.getExerciseIds().stream().map(Exercise::new).collect(Collectors.toList());
     }
 
     @Override

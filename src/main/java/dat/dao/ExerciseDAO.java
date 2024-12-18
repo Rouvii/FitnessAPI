@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseDAO implements IDao<ExerciseDTO> {
@@ -52,15 +53,17 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
-            Session session = null;
+            List<Session> sessions = new ArrayList<>();
             if (exerciseDTO.getSessionId() != null) {
-                session = em.find(Session.class, exerciseDTO.getSessionId());
-                if (session == null) {
+                sessions = em.createQuery("SELECT s FROM Session s WHERE s.id = :id", Session.class)
+                        .setParameter("id", exerciseDTO.getSessionId())
+                        .getResultList();
+                if (sessions == null) {
                     throw new IllegalArgumentException("Session with ID " + exerciseDTO.getSessionId() + " not found");
                 }
             }
 
-            Exercise exercise = new Exercise(exerciseDTO, session);
+            Exercise exercise = new Exercise(exerciseDTO, sessions);
             em.persist(exercise);
             em.getTransaction().commit();
 
@@ -72,9 +75,7 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
 
     @Override
     public void update(int id, ExerciseDTO update) {
-        EntityManager em = null;
-        try {
-            em = emf.createEntityManager();
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
 
             Exercise exercise = em.find(Exercise.class, id);
@@ -82,29 +83,23 @@ public class ExerciseDAO implements IDao<ExerciseDTO> {
                 throw new IllegalArgumentException("Exercise with ID " + id + " not found");
             }
 
-            Session session = null;
+            List<Session> sessions = new ArrayList<>();
             if (update.getSessionId() != null) {
-                session = em.find(Session.class, update.getSessionId());
-                if (session == null) {
+                sessions = em.createQuery("SELECT s FROM Session s WHERE s.id = :id", Session.class)
+                        .setParameter("id", update.getSessionId())
+                        .getResultList();
+                if (sessions == null) {
                     throw new IllegalArgumentException("Session with ID " + update.getSessionId() + " not found");
                 }
             }
 
             exercise.setName(update.getName());
-            exercise.setSession(session);
-            exercise.setDescription(update.getDescription());
             exercise.setMuscleGroup(update.getMuscleGroup());
-
+            exercise.setDescription(update.getDescription());
+            exercise.setSessions(sessions);
             em.getTransaction().commit();
         } catch (Exception e) {
-            if (em != null && em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
-            }
             throw new IllegalStateException("Error updating exercise: " + e.getMessage(), e);
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
         }
     }
 

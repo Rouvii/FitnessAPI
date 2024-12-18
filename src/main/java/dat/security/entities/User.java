@@ -1,5 +1,6 @@
 package dat.security.entities;
 
+import dat.entities.Session;
 import jakarta.persistence.*;
 import lombok.*;
 import org.mindrot.jbcrypt.BCrypt;
@@ -7,6 +8,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -33,6 +35,8 @@ public class User implements Serializable, ISecurityUser {
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
+    @OneToMany(mappedBy = "user")
+    private List<Session> trainingSessions;
 
     @JoinTable(name = "user_roles", joinColumns = {@JoinColumn(name = "user_name", referencedColumnName = "username")}, inverseJoinColumns = {@JoinColumn(name = "role_name", referencedColumnName = "name")})
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
