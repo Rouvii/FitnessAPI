@@ -16,13 +16,13 @@ public class SessionDTO {
 
     private int id;
     private UserDTO user;
-    private List<Integer> exerciseIds;
+    private List<ExerciseDTO> exercises;
 
     public SessionDTO(Session session) {
         this.id = session.getId();
         this.user = new UserDTO(session.getUser());
-        this.exerciseIds = session.getExercise().stream()
-                .map(Exercise::getId)
+        this.exercises = session.getExercise().stream()
+                .map(ExerciseDTO::new)
                 .collect(Collectors.toList());
     }
 }

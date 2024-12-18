@@ -1,6 +1,8 @@
 package dat.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import dat.dto.ExerciseDTO;
 import dat.dto.SessionDTO;
 import dat.security.entities.User;
 import jakarta.persistence.*;
@@ -28,13 +30,14 @@ public class Session {
     private String name;
 
     @ManyToMany(fetch = FetchType.LAZY,mappedBy = "sessions")
-    @JsonManagedReference
     private List<Exercise> exercise;
 
     public Session(SessionDTO sessionDTO) {
         this.id = sessionDTO.getId();
         this.user = new User(sessionDTO.getUser().getUsername(), sessionDTO.getUser().getPassword());
-        this.exercise = sessionDTO.getExerciseIds().stream().map(Exercise::new).collect(Collectors.toList());
+        this.exercise = sessionDTO.getExercises().stream()
+                .map(exerciseDTO -> new Exercise(exerciseDTO, List.of(this)))
+                .collect(Collectors.toList());
     }
 
     @Override

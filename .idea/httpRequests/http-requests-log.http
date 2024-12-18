@@ -1,0 +1,1226 @@
+POST http://localhost:7070/api/exercises
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTMzNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.0qU42Qv1HY1BPDqsXaitO8AnahU1IPRSPkM6o1LCKho
+Content-Length: 78
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "Test Exercise",
+  "description": "TEST",
+  "muscleGroup": "ABS"
+}
+
+<> 2024-12-18T144748.200.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTMzNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.0qU42Qv1HY1BPDqsXaitO8AnahU1IPRSPkM6o1LCKho
+Content-Length: 410
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "id": 0,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 1,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "A lower-body exercise for the legs and glutes."
+    }
+  ]
+}
+
+<> 2024-12-18T144640.404.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTMzNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.0qU42Qv1HY1BPDqsXaitO8AnahU1IPRSPkM6o1LCKho
+Content-Length: 410
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "A lower-body exercise for the legs and glutes."
+    }
+  ]
+}
+
+<> 2024-12-18T144631.404.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTMzNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.0qU42Qv1HY1BPDqsXaitO8AnahU1IPRSPkM6o1LCKho
+Content-Length: 101
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": []
+}
+
+<> 2024-12-18T144621.400.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTMzNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.0qU42Qv1HY1BPDqsXaitO8AnahU1IPRSPkM6o1LCKho
+Content-Length: 410
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "A lower-body exercise for the legs and glutes."
+    }
+  ]
+}
+
+<> 2024-12-18T144539.404.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTA3Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9eyPK6nw7_7wbI7yotxFoPahzjtWIa1CT0M5HTlaQ30
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T144535.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTA3Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9eyPK6nw7_7wbI7yotxFoPahzjtWIa1CT0M5HTlaQ30
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T144535.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTA3Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9eyPK6nw7_7wbI7yotxFoPahzjtWIa1CT0M5HTlaQ30
+Content-Length: 410
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "A lower-body exercise for the legs and glutes."
+    }
+  ]
+}
+
+<> 2024-12-18T144521.404.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMTA3Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9eyPK6nw7_7wbI7yotxFoPahzjtWIa1CT0M5HTlaQ30
+Content-Length: 349
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push-up",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 2,
+      "name": "Squat",
+      "description": "A lower-body exercise for the legs and glutes."
+    }
+  ]
+}
+
+<> 2024-12-18T144119.404.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDkwMywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.2Qn3sPRQEYUKpxSTQYUZ5Aoqjf8yT-QUjQiLmx_TINk
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T144117.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDkwMywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.2Qn3sPRQEYUKpxSTQYUZ5Aoqjf8yT-QUjQiLmx_TINk
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T144116.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDkwMywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.2Qn3sPRQEYUKpxSTQYUZ5Aoqjf8yT-QUjQiLmx_TINk
+Content-Length: 349
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 2,
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push-up",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 2,
+      "name": "Squat",
+      "description": "A lower-body exercise for the legs and glutes."
+    }
+  ]
+}
+
+<> 2024-12-18T144043.404.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDc5NCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.TPLFhbVo2B2s4ADYR2KogVqpJf6miCvntXoxoFS91Yc
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T143823.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDc5NCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.TPLFhbVo2B2s4ADYR2KogVqpJf6miCvntXoxoFS91Yc
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T143822.201.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDYwNiwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.aSFsuHVSk2O_YvIaOilTg_1bFfFCxfA0G3gPle3fAKA
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T143634.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDYwNiwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.aSFsuHVSk2O_YvIaOilTg_1bFfFCxfA0G3gPle3fAKA
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T143634.201.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDU2MSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.bMyuDku2_Q5OnZtDDOjZYRLO0ih4LH4CTOxkWvH3iYw
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T143326.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDU2MSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.bMyuDku2_Q5OnZtDDOjZYRLO0ih4LH4CTOxkWvH3iYw
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T143325.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDU2MSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.bMyuDku2_Q5OnZtDDOjZYRLO0ih4LH4CTOxkWvH3iYw
+Content-Length: 660
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 1,
+  "user": {
+    "id": 1,
+    "username": "user1",
+    "password": "password"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "Push up exercise",
+      "sets": [
+        {
+          "id": 1,
+          "reps": 10,
+          "weight": 0
+        },
+        {
+          "id": 2,
+          "reps": 12,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "Pull up exercise",
+      "sets": [
+        {
+          "id": 3,
+          "reps": 8,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T143244.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDUyNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.M7SZ5tmuTBmvcH6defuJMC6X78PzMtAG3Hep1WYYU98
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T143241.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDUyNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.M7SZ5tmuTBmvcH6defuJMC6X78PzMtAG3Hep1WYYU98
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T143240.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDUyNSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.M7SZ5tmuTBmvcH6defuJMC6X78PzMtAG3Hep1WYYU98
+Content-Length: 660
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 1,
+  "user": {
+    "id": 1,
+    "username": "user1",
+    "password": "password"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "Push up exercise",
+      "sets": [
+        {
+          "id": 1,
+          "reps": 10,
+          "weight": 0
+        },
+        {
+          "id": 2,
+          "reps": 12,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "Pull up exercise",
+      "sets": [
+        {
+          "id": 3,
+          "reps": 8,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T143207.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDE5Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.CNLQCFIdXcU9L6LY88oaSVrl0VlUtBWHxucMDlyWQy4
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T143205.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDE5Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.CNLQCFIdXcU9L6LY88oaSVrl0VlUtBWHxucMDlyWQy4
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T143204.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDE5Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.CNLQCFIdXcU9L6LY88oaSVrl0VlUtBWHxucMDlyWQy4
+Content-Length: 660
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "id": 1,
+  "user": {
+    "id": 1,
+    "username": "user1",
+    "password": "password"
+  },
+  "exercises": [
+    {
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "Push up exercise",
+      "sets": [
+        {
+          "id": 1,
+          "reps": 10,
+          "weight": 0
+        },
+        {
+          "id": 2,
+          "reps": 12,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "Pull up exercise",
+      "sets": [
+        {
+          "id": 3,
+          "reps": 8,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T142902.500.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDE5Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.CNLQCFIdXcU9L6LY88oaSVrl0VlUtBWHxucMDlyWQy4
+Content-Length: 164
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS"
+    }
+  ]
+}
+
+<> 2024-12-18T142735.500.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDE5Nywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.CNLQCFIdXcU9L6LY88oaSVrl0VlUtBWHxucMDlyWQy4
+Content-Length: 192
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS"
+    }
+  ]
+}
+
+<> 2024-12-18T142640.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDA2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.oH-cf8QvJNWOYiTyJgm4r9_h-yzoouMTLiMMptk5LGs
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T142637.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDA2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.oH-cf8QvJNWOYiTyJgm4r9_h-yzoouMTLiMMptk5LGs
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T142635.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDA2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.oH-cf8QvJNWOYiTyJgm4r9_h-yzoouMTLiMMptk5LGs
+Content-Length: 192
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS"
+    }
+  ]
+}
+
+<> 2024-12-18T142621.500.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDA2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.oH-cf8QvJNWOYiTyJgm4r9_h-yzoouMTLiMMptk5LGs
+Content-Length: 205
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS"
+    }
+  ]
+}
+
+<> 2024-12-18T142547.500.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUzMDA2Miwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.oH-cf8QvJNWOYiTyJgm4r9_h-yzoouMTLiMMptk5LGs
+Content-Length: 294
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T142426.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTcyNywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-IE7GmspQZH7F7YF-Q_2RSZMnsg4M3XGaLjGI1ZQGtg
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T142422.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTcyNywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-IE7GmspQZH7F7YF-Q_2RSZMnsg4M3XGaLjGI1ZQGtg
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T142421.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTcyNywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.-IE7GmspQZH7F7YF-Q_2RSZMnsg4M3XGaLjGI1ZQGtg
+Content-Length: 294
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T141850.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTYzMCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.fpDSLbf9GHce86xZI0ouhNQFeMgMvuRKYBP1-gwLEJI
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T141847.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTYzMCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.fpDSLbf9GHce86xZI0ouhNQFeMgMvuRKYBP1-gwLEJI
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T141846.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTYzMCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.fpDSLbf9GHce86xZI0ouhNQFeMgMvuRKYBP1-gwLEJI
+Content-Length: 294
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T141712.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTM3OCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.P8QUUbNmRf4Q_xaUM1RI_Pg4n-7K9I5sP1wdCdGGd7I
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T141710.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTM3OCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.P8QUUbNmRf4Q_xaUM1RI_Pg4n-7K9I5sP1wdCdGGd7I
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T141708.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyOTM3OCwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.P8QUUbNmRf4Q_xaUM1RI_Pg4n-7K9I5sP1wdCdGGd7I
+Content-Length: 294
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T141300.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyODMyNiwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9wqabdt0Bw4m5pYRPJm48SsIvwPLLfwKAjbXXT7q0tE
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T141258.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyODMyNiwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9wqabdt0Bw4m5pYRPJm48SsIvwPLLfwKAjbXXT7q0tE
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T141256.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyODMyNiwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.9wqabdt0Bw4m5pYRPJm48SsIvwPLLfwKAjbXXT7q0tE
+Content-Length: 294
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T135530.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyODEyNywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.tiz-iU4Mk5DXrTNPwMLtqXxsYoGZOAu65jMF8k9xmgQ
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T135526.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyODEyNywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.tiz-iU4Mk5DXrTNPwMLtqXxsYoGZOAu65jMF8k9xmgQ
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T135525.201.json
+
+###
+
+POST http://localhost:7070/api/sessions
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyODEyNywicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.tiz-iU4Mk5DXrTNPwMLtqXxsYoGZOAu65jMF8k9xmgQ
+Content-Length: 294
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "password": "admin123"
+  },
+  "exercises": [
+    {
+      "name": "Test Exercise",
+      "description": "TEST",
+      "muscleGroup": "ABS",
+      "sets": [
+        {
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ]
+}
+
+<> 2024-12-18T135209.500.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyNzY0MSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.DES-lG-wTWOVg0ZepYzBpbZuI06P9WUZtwIsZJdp4iw
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T135207.200.json
+
+###
+
+POST http://localhost:7070/api/auth/register
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyNzY0MSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.DES-lG-wTWOVg0ZepYzBpbZuI06P9WUZtwIsZJdp4iw
+Content-Length: 51
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+
+<> 2024-12-18T135206.201.json
+
+###
+
+POST http://localhost:7070/api/auth/login
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEYW5pZWwga2V2aW4iLCJzdWIiOiJhZG1pbiIsImV4cCI6MTczNDUyNzM4OSwicm9sZXMiOiJBRE1JTiIsInVzZXJuYW1lIjoiYWRtaW4ifQ.nyASVxKLQDksHqiUzp_KtGCKjCk5FzoGC2nlTGukwP4
+Content-Length: 49
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.12)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+"username": "admin",
+"password": "admin123"
+
+}
+
+<> 2024-12-18T134401.200.json
+
+###
+

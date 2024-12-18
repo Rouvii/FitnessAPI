@@ -7,6 +7,7 @@ import dat.exception.ApiException;
 import dat.security.entities.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,20 +49,38 @@ public class SessionDAO implements IDao<SessionDTO> {
 
     @Override
     public SessionDTO create(SessionDTO sessionDto) {
-        try (EntityManager em = emf.createEntityManager()) {
+        EntityManager em = emf.createEntityManager();
+        try {
             em.getTransaction().begin();
-            Session session = new Session();
-            session.setUser(em.find(User.class, sessionDto.getUser().getUsername()));
-            List<Exercise> exercises = sessionDto.getExerciseIds().stream()
-                    .map(id -> em.find(Exercise.class, id))
+            Session session = new Session(sessionDto);
+            User user = em.find(User.class, sessionDto.getUser().getUsername());
+            if (user == null) {
+                throw new EntityNotFoundException("User not found with ID: " + sessionDto.getUser().getUsername());
+            }
+            session.setUser(user);
+            List<Exercise> exercises = sessionDto.getExercises().stream()
+                    .map(exerciseDto -> {
+                        Exercise exercise = em.find(Exercise.class, exerciseDto.getId());
+                        if (exercise == null) {
+                            throw new EntityNotFoundException("Exercise not found with ID: " + exerciseDto.getId());
+                        }
+                        return exercise;
+                    })
                     .collect(Collectors.toList());
             session.setExercise(exercises);
             em.persist(session);
             em.getTransaction().commit();
             return new SessionDTO(session);
+        } catch (EntityNotFoundException e) {
+            em.getTransaction().rollback();
+            throw new ApiException(404, e.getMessage());
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw new ApiException(500, "An error occurred while creating the session: " + e.getMessage());
+        } finally {
+            em.close();
         }
     }
-
     @Override
     public void update(int id, SessionDTO updatedSession) {
         try (EntityManager em = emf.createEntityManager()) {
@@ -70,7 +89,7 @@ public class SessionDAO implements IDao<SessionDTO> {
             if (existingSession == null) {
                 throw new ApiException(404, "Session not found");
             }
-            List<Exercise> exercises = updatedSession.getExerciseIds().stream()
+            List<Exercise> exercises = updatedSession.getExercises().stream()
                     .map(exerciseId -> em.find(Exercise.class, exerciseId))
                     .collect(Collectors.toList());
             existingSession.setExercise(exercises);

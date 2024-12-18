@@ -1,8 +1,10 @@
 package dat.controller;
 
 import dat.dao.SessionDAO;
+import dat.dto.ExerciseDTO;
 import dat.dto.SessionDTO;
 import dat.dto.UserDTO;
+import dat.entities.Exercise;
 import dat.entities.Session;
 import dat.exception.ApiException;
 import dat.exception.Message;
@@ -46,22 +48,33 @@ public class SessionController implements IController {
     }
 
     public void create(Context ctx) {
-        SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
-        UserDTO userDTO = sessionDTO.getUser();
+        try {
+            SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
+            UserDTO userDTO = sessionDTO.getUser();
+            System.out.println(" "+ userDTO);
+            // Convert UserDTO to User
+            User user = new User(userDTO.getUsername(), userDTO.getPassword());
+            System.out.println(" " + user);
+            // Ensure the user is persisted
+            if (user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword().isEmpty()) {
+                throw new ApiException(400, "User credentials are invalid");
+            }
 
-        // Convert UserDTO to User
-        User user = new User(userDTO.getUsername(), userDTO.getPassword());
-
-        // Ensure the user is persisted
-        if (user.getUsername().equals("") || user.getPassword().equals("")) {
-            // Save the user entity if it is not already persisted
-            // sessionDAO.(user); // Removed incomplete line
+          List<ExerciseDTO> exercises = sessionDTO.getExercises();
+            if (exercises.isEmpty()) {
+                throw new ApiException(400, "No exercises in session");
+            }
+            sessionDTO.setExercises(exercises);
+           Session session = new Session(sessionDTO);
+            System.out.println(" " + session);
+            session.setUser(user); // Set the user in the session
+            sessionDAO.create(new SessionDTO(session)); // Use create method
+            ctx.status(201).json(session);
+        } catch (ApiException e) {
+            ctx.status(e.getStatusCode()).json(new Message(e.getStatusCode(), e.getMessage()));
+        } catch (Exception e) {
+            ctx.status(500).json(new Message(500, "Internal server error"));
         }
-
-        Session session = new Session(sessionDTO);
-        session.setUser(user); // Set the user in the session
-        sessionDAO.create(new SessionDTO(session)); // Use create method
-        ctx.status(201).json(session);
     }
 
     @Override

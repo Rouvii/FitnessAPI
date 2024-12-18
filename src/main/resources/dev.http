@@ -12,23 +12,27 @@ Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
+  "id": 2,
   "user": {
-    "id": 1
+    "username": "admin",
+    "password": "admin123"
   },
   "exercises": [
     {
-      "name": "Test Exercise",
-      "description": "TEST",
-      "muscleGroup": "ABS",
-      "sets": [
-        {
-          "reps": 10,
-          "weight": 0
-        }
-      ]
+      "id": 1,
+      "name": "Push Up",
+      "muscleGroup": "CHEST",
+      "description": "An exercise to strengthen the chest and triceps."
+    },
+    {
+      "id": 2,
+      "name": "Pull Up",
+      "muscleGroup": "BACK",
+      "description": "A lower-body exercise for the legs and glutes."
     }
   ]
 }
+
 ###
 PUT {{URL}}/api/sessions/1
 Content-Type: application/json
