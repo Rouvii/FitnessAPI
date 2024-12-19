@@ -3,6 +3,8 @@ import dat.config.HibernateConfig;
 import dat.controller.SessionController;
 import dat.dao.ExerciseDAO;
 import dat.dao.SessionDAO;
+import dat.security.controllers.SecurityController;
+import dat.security.enums.Role;
 import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -15,14 +17,17 @@ public class SessionRoutes {
     private final ExerciseDAO exerciseDAO = new ExerciseDAO(emf);
     private final SessionController sessionController = new SessionController(sessionDAO, exerciseDAO);
 
+    SecurityController securityController = SecurityController.getInstance();
+
     public EndpointGroup getRoutes() {
         return () -> {
-            get("/", sessionController::getAll);
-            get("/{id}", sessionController::getById);
-            post("/", sessionController::create);
-            put("/{id}", sessionController::update);
-            delete("/{id}", sessionController::delete);
-            put("/addExerciseToSession/{sessionId}/{exerciseId}", sessionController::addExerciseToSession);
+            before(securityController.authenticate());
+            get("/", sessionController::getAll, Role.ADMIN);
+            get("/{id}", sessionController::getById, Role.ADMIN);
+            post("/", sessionController::create,Role.USER, Role.ADMIN);
+            put("/{id}", sessionController::update,Role.USER, Role.ADMIN);
+            delete("/{id}", sessionController::delete,Role.USER, Role.ADMIN);
+            put("/addExerciseToSession/{sessionId}/{exerciseId}", sessionController::addExerciseToSession,Role.USER, Role.ADMIN);
         };
     }
 }

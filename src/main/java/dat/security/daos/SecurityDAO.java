@@ -11,6 +11,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ public class SecurityDAO implements ISecurityDAO {
             } else {
                 // Check if user role exists, if not create it
                 if (userRole == null) {
-                    userRole = new Role("user");
+                    userRole = new Role("USER");
                     em.persist(userRole);
                 }
                 userEntity.addRole(userRole);
@@ -117,6 +118,34 @@ public class SecurityDAO implements ISecurityDAO {
                 }
                 user.addRole(role);
                 //em.merge(user);
+            em.getTransaction().commit();
+            return user;
+        }
+    }
+
+    // In SecurityDAO.java
+    public List<UserDTO> getAllUsers() {
+        try (EntityManager em = getEntityManager()) {
+            List<User> users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
+            return users.stream().map(u -> new UserDTO(u.getUsername(), u.getRoles().stream().map(r -> r.getRoleName()).collect(Collectors.toSet()))).collect(Collectors.toList());
+        }
+    }
+
+
+    public User updateUserRole(String username, String newRole) {
+        try (EntityManager em = getEntityManager()) {
+            User user = em.find(User.class, username);
+            if (user == null) {
+                throw new EntityNotFoundException("No user found with username: " + username);
+            }
+            em.getTransaction().begin();
+            Role role = em.find(Role.class, newRole);
+            if (role == null) {
+                role = new Role(newRole);
+                em.persist(role);
+            }
+            user.getRoles().clear(); // Clear existing roles
+            user.addRole(role); // Add new role
             em.getTransaction().commit();
             return user;
         }

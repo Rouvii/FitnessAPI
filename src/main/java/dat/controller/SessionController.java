@@ -2,7 +2,6 @@ package dat.controller;
 
 import dat.dao.ExerciseDAO;
 import dat.dao.SessionDAO;
-import dat.dto.ExerciseDTO;
 import dat.dto.SessionDTO;
 import dat.dto.UserDTO;
 import dat.entities.Exercise;
@@ -11,8 +10,6 @@ import dat.exception.ApiException;
 import dat.exception.Message;
 import dat.security.entities.User;
 import io.javalin.http.Context;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,56 +98,6 @@ public class SessionController implements IController {
             log.error("Error creating session: {}", e.getMessage());
         }
     }
-
-
-
-//    public void create(Context ctx) {
-//        try {
-//            // Parse sessionDTO fra anmodningen
-//            SessionDTO sessionDTO = ctx.bodyAsClass(SessionDTO.class);
-//            UserDTO userDTO = sessionDTO.getUser();
-//
-//            // Log brugeren for fejlsøgning
-//            System.out.println("Received UserDTO: " + userDTO);
-//
-//            // Opret User objekt fra UserDTO
-//            User user = new User(userDTO.getUsername(), userDTO.getPassword());
-//
-//            // Validér brugeren
-//            if (user.getUsername() == null || user.getUsername().isEmpty() || user.getPassword() == null || user.getPassword().isEmpty()) {
-//                throw new ApiException(400, "User credentials are invalid");
-//            }
-//
-//            // Sørg for, at brugeren er vedvarende i databasen
-//            sessionDAO.saveOrUpdateUser(user); // Ny metode i DAO-laget
-//
-//            // Tjek om der er øvelser i sessionDTO
-//            List<ExerciseDTO> exercises = sessionDTO.getExercises();
-//            if (exercises == null) {
-//                exercises = List.of();  // Standard til en tom liste hvis exercises er null
-//            }
-//
-//            // Set exercises (selv tomme)
-//            sessionDTO.setExercises(exercises);
-//
-//            // Opret session og tilknyt brugeren
-//            Session session = new Session(sessionDTO);
-//            session.setUser(user); // Tilknyt brugeren til sessionen
-//            System.out.println("Created Session: " + session);
-//
-//            // Persist sessionen i databasen via DAO
-//            sessionDAO.create(sessionDTO);  // Brug sessionDTO når du kalder create metode
-//
-//            // Respondér med den oprettede session
-//            ctx.status(201).json(session);
-//
-//        } catch (ApiException e) {
-//            // Håndter API-specifikke fejl
-//            ctx.status(e.getStatusCode()).json(new Message(e.getStatusCode(), e.getMessage()));
-//        } catch (Exception e) {
-//            // Log uventede fejl
-//        }
-//    }
 
 
     @Override

@@ -3,6 +3,8 @@ package dat.routes;
 import dat.config.HibernateConfig;
 import dat.controller.ExerciseController;
 import dat.dao.ExerciseDAO;
+import dat.security.controllers.SecurityController;
+import dat.security.enums.Role;
 import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
 import static io.javalin.apibuilder.ApiBuilder.*;
@@ -19,13 +21,15 @@ public class ExerciseRoutes {
     private final ExerciseDAO exerciseDAO = new ExerciseDAO(emf);
     private final ExerciseController exerciseController = new ExerciseController(exerciseDAO);
 
+    SecurityController securityController = SecurityController.getInstance();
     public EndpointGroup getRoutes() {
         return () -> {
-            get("/", exerciseController::getAll);
-            get("/{id}", exerciseController::getById);
-            post("/", exerciseController::create);
-            put("/{id}", exerciseController::update);
-            delete("/{id}", exerciseController::delete);
+            before(securityController.authenticate());
+            get("/", exerciseController::getAll, Role.USER);
+            get("/{id}", exerciseController::getById, Role.USER);
+            post("/", exerciseController::create, Role.ADMIN);
+            put("/{id}", exerciseController::update, Role.ADMIN);
+            delete("/{id}", exerciseController::delete, Role.ADMIN);
         };
     }
 

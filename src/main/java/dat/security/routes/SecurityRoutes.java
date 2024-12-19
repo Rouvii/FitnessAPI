@@ -23,7 +23,8 @@ public class SecurityRoutes {
                 post("/login", securityController.login(), Role.ANYONE);
                 post("/register", securityController.register(), Role.ANYONE);
                 post("/user/addrole", securityController.addRole(), Role.USER);
-               // get("/info/users", securityController.getUserInfo(), Role.USER);
+                get("/users", securityController.getAllUsers(), Role.ADMIN);
+                put("/users/{username}/role", securityController.updateUserRole(), Role.ADMIN);
             });
         };
     }

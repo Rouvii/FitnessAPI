@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -192,6 +193,30 @@ public class SecurityController implements ISecurityController {
 
 
 
+            }
+        };
+    }
+
+    public Handler getAllUsers() {
+        return ctx -> {
+            List<UserDTO> users = securityDAO.getAllUsers();
+            ctx.json(users);
+        };
+    }
+
+
+    public Handler updateUserRole() {
+        return (ctx) -> {
+            ObjectNode returnObject = objectMapper.createObjectNode();
+            try {
+                String username = ctx.pathParam("username");
+                String newRole = ctx.bodyAsClass(ObjectNode.class).get("role").asText();
+                User updatedUser = securityDAO.updateUserRole(username, newRole);
+                ctx.status(200).json(returnObject.put("msg", "Role " + newRole + " updated for user " + username));
+            } catch (EntityNotFoundException e) {
+                ctx.status(404).json(returnObject.put("msg", "User not found"));
+            } catch (Exception e) {
+                ctx.status(500).json(returnObject.put("msg", "Error updating user role"));
             }
         };
     }
