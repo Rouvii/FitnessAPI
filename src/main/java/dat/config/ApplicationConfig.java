@@ -40,8 +40,9 @@ public class ApplicationConfig {
 
         app.beforeMatched(ctx -> accessController.accessHandler(ctx));
 
-        app.exception(Exception.class, ApplicationConfig::generalExceptionHandler);
         app.exception(ApiException.class, ApplicationConfig::apiExceptionHandler);
+        app.exception(Exception.class, ApplicationConfig::generalExceptionHandler);
+
         app.start(port);
         return app;
     }
