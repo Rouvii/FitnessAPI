@@ -107,8 +107,8 @@ Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
 {
-  "username": "admin",
-  "password": "admin123"
+  "username": "kevin",
+  "password": "kevin1"
 }
 ###
 GET {{URL}}/auth/users

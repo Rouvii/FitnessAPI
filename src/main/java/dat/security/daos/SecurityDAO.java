@@ -54,8 +54,8 @@ public class SecurityDAO implements ISecurityDAO {
                 throw new EntityExistsException("User with username: " + username + " already exists");
             userEntity = new User(username, password);
             em.getTransaction().begin();
-            Role userRole = em.find(Role.class, "user");
-            Role adminRole = em.find(Role.class, "admin");
+            Role userRole = em.find(Role.class, "USER");
+            Role adminRole = em.find(Role.class, "ADMIN");
             if (username.equals("admin")) {
                 // Check if admin role exists, if not create it
                 if (adminRole == null) {
@@ -71,11 +71,10 @@ public class SecurityDAO implements ISecurityDAO {
                 }
                 userEntity.addRole(userRole);
             }
-
             em.persist(userEntity);
             em.getTransaction().commit();
             return userEntity;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new ApiException(400, e.getMessage());
         }

@@ -22,8 +22,8 @@ public class SessionRoutes {
     public EndpointGroup getRoutes() {
         return () -> {
             before(securityController.authenticate());
-            get("/", sessionController::getAll, Role.ADMIN);
-            get("/{id}", sessionController::getById, Role.ADMIN);
+            get("/", sessionController::getAll, Role.USER, Role.ADMIN);
+            get("/{id}", sessionController::getById, Role.USER, Role.ADMIN);
             post("/", sessionController::create,Role.USER, Role.ADMIN);
             put("/{id}", sessionController::update,Role.USER, Role.ADMIN);
             delete("/{id}", sessionController::delete,Role.USER, Role.ADMIN);
