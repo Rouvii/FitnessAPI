@@ -20,7 +20,7 @@ Authorization: Bearer {{jwt_token}}
 }
 
 ###
-PUT {{URL}}/sessions/addExerciseToSession/2/2
+PUT {{URL}}/sessions/addExerciseToSession/2/1
 Content-Type: application/json
 Authorization: Bearer {{jwt_token}}
 
@@ -109,5 +109,17 @@ Authorization: Bearer {{jwt_token}}
 {
   "username": "admin",
   "password": "admin123"
+}
+###
+GET {{URL}}/auth/users
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+###
+PUT {{URL}}/auth/users/user1/role
+Content-Type: application/json
+Authorization: Bearer {{jwt_token}}
+
+{
+  "role": "ADMIN"
 }
 ###
