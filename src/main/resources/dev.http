@@ -95,8 +95,8 @@ Authorization: Bearer {{jwt_token}}
 
 {
 
-"username": "admin",
-"password": "admin123"
+"username": "kevin",
+"password": "kevin1"
 
 }
 
