@@ -22,8 +22,6 @@ public class ApplicationConfig {
     private static AccessController accessController = new AccessController();
     private static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 
-    // Allow requests from specific origins (e.g., React app on localhost during development)
-    private static final String ALLOWED_ORIGIN = "http://localhost:5173"; // Adjust to your React app's URL
 
     public static void configuration(JavalinConfig config) {
         config.showJavalinBanner = false;
@@ -39,6 +37,9 @@ public class ApplicationConfig {
         app.before(ApplicationConfig::corsHeaders);
         app.options("/*", ApplicationConfig::corsHeadersOptions);
         app.beforeMatched(accessController::accessHandler);
+
+
+        app.beforeMatched(ctx -> accessController.accessHandler(ctx));
 
         app.exception(ApiException.class, ApplicationConfig::apiExceptionHandler);
         app.exception(Exception.class, ApplicationConfig::generalExceptionHandler);
@@ -62,38 +63,22 @@ public class ApplicationConfig {
         ctx.json(Utils.convertToJsonMessage(ctx, "warning", e.getMessage()));
     }
 
-    // CORS headers to handle cross-origin requests
+
     private static void corsHeaders(Context ctx) {
-        String origin = ctx.header("Origin");
-
-        // Only allow requests from specific origins (e.g., React app during development)
-        if (origin != null && (origin.equals(ALLOWED_ORIGIN) || origin.equals("https://your-production-url.com"))) {
-            ctx.header("Access-Control-Allow-Origin", origin);
-        } else {
-            // Default to localhost for local development (remove this if not needed)
-            ctx.header("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
-        }
-
-        ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        ctx.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-        ctx.header("Access-Control-Allow-Credentials", "true"); // Allow credentials (cookies, Authorization headers)
-    }
-
-    // Handle OPTIONS preflight requests
-    private static void corsHeadersOptions(Context ctx) {
-        String origin = ctx.header("Origin");
-
-        // Only allow requests from specific origins (e.g., React app during development)
-        if (origin != null && (origin.equals(ALLOWED_ORIGIN) || origin.equals("https://your-production-url.com"))) {
-            ctx.header("Access-Control-Allow-Origin", origin);
-        } else {
-            // Default to localhost for local development (remove this if not needed)
-            ctx.header("Access-Control-Allow-Origin", ALLOWED_ORIGIN);
-        }
-
+        ctx.header("Access-Control-Allow-Origin", "*");
         ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         ctx.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
         ctx.header("Access-Control-Allow-Credentials", "true");
-        ctx.status(204); // No content
     }
+
+    private static void corsHeadersOptions(Context ctx) {
+        ctx.header("Access-Control-Allow-Origin", "*");
+        ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        ctx.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        ctx.header("Access-Control-Allow-Credentials", "true");
+        ctx.status(204);
+    }
+
+
+
 }
