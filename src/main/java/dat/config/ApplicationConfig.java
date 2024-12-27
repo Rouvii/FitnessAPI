@@ -22,10 +22,11 @@ public class ApplicationConfig {
     private static AccessController accessController = new AccessController();
     private static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 
+
     public static void configuration(JavalinConfig config) {
         config.showJavalinBanner = false;
         config.bundledPlugins.enableRouteOverview("/routes", Role.ANYONE);
-        config.router.contextPath = "/api"; // Base path for all endpoints
+        config.router.contextPath = "/api"; // base path for all endpoints
         config.router.apiBuilder(routes.getRoutes());
         config.router.apiBuilder(SecurityRoutes.getSecuredRoutes());
         config.router.apiBuilder(SecurityRoutes.getSecurityRoutes());
@@ -33,9 +34,12 @@ public class ApplicationConfig {
 
     public static Javalin startServer(int port) {
         Javalin app = Javalin.create(ApplicationConfig::configuration);
-        app.before(ApplicationConfig::corsHeaders); // Apply CORS headers to every request
-        app.options("/*", ApplicationConfig::corsHeadersOptions); // Handle preflight OPTIONS requests
+        app.before(ApplicationConfig::corsHeaders);
+        app.options("/*", ApplicationConfig::corsHeadersOptions);
         app.beforeMatched(accessController::accessHandler);
+
+
+        app.beforeMatched(ctx -> accessController.accessHandler(ctx));
 
         app.exception(ApiException.class, ApplicationConfig::apiExceptionHandler);
         app.exception(Exception.class, ApplicationConfig::generalExceptionHandler);
@@ -59,30 +63,22 @@ public class ApplicationConfig {
         ctx.json(Utils.convertToJsonMessage(ctx, "warning", e.getMessage()));
     }
 
+
     private static void corsHeaders(Context ctx) {
-        String origin = ctx.header("Origin"); // Dynamically set the allowed origin
-        if (origin != null) {
-            ctx.header("Access-Control-Allow-Origin", origin); // Reflect the origin header from the request
-        } else {
-            ctx.header("Access-Control-Allow-Origin", "https://your-frontend-domain.com"); // Fallback origin
-        }
+        ctx.header("Access-Control-Allow-Origin", "*");
         ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         ctx.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
         ctx.header("Access-Control-Allow-Credentials", "true");
-        ctx.header("Access-Control-Max-Age", "86400"); // Cache preflight responses for 24 hours
     }
 
     private static void corsHeadersOptions(Context ctx) {
-        String origin = ctx.header("Origin");
-        if (origin != null) {
-            ctx.header("Access-Control-Allow-Origin", origin); // Reflect the origin
-        } else {
-            ctx.header("Access-Control-Allow-Origin", "https://your-frontend-domain.com"); // Fallback origin
-        }
+        ctx.header("Access-Control-Allow-Origin", "*");
         ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         ctx.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
         ctx.header("Access-Control-Allow-Credentials", "true");
-        ctx.header("Access-Control-Max-Age", "86400"); // Cache preflight responses for 24 hours
-        ctx.status(204); // No content for preflight responses
+        ctx.status(204);
     }
+
+
+
 }
