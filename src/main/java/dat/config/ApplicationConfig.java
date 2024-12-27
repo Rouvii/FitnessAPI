@@ -34,8 +34,8 @@ public class ApplicationConfig {
 
     public static Javalin startServer(int port) {
         Javalin app = Javalin.create(ApplicationConfig::configuration);
-        //app.before(ApplicationConfig::corsHeaders);
-        //app.options("/*", ApplicationConfig::corsHeadersOptions);
+        app.before(ApplicationConfig::corsHeaders);
+        app.options("/*", ApplicationConfig::corsHeadersOptions);
         app.beforeMatched(accessController::accessHandler);
 
 
@@ -63,7 +63,7 @@ public class ApplicationConfig {
         ctx.json(Utils.convertToJsonMessage(ctx, "warning", e.getMessage()));
     }
 
-/*
+
     private static void corsHeaders(Context ctx) {
         ctx.header("Access-Control-Allow-Origin", "*");
         ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
@@ -79,6 +79,6 @@ public class ApplicationConfig {
         ctx.status(204);
     }
 
-*/
+
 
 }
